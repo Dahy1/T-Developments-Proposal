@@ -1,0 +1,1930 @@
+<!doctype html>
+<html lang="en" class="is-loading">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T Developments — Follow The T.</title>
+<meta name="description" content="T Developments (formerly Taj Developments). A family-built real estate developer shaping timeless communities in Sheikh Zayed and 6th of October since 1995.">
+<meta name="theme-color" content="#0F1013">
+<script>/* every refresh starts at the top, with the preloader */ if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; window.addEventListener('beforeunload', () => window.scrollTo(0, 0));</script>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/cinzel-latin-900-normal.ttf" as="fetch" crossorigin>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js" crossorigin>
+
+<style>
+/* =========================================================
+   DESIGN SYSTEM — T Developments (Company Profile V2)
+   One palette, one type scale, one spacing scale. Every rule below is built from these tokens.
+   The only free sizes are the "fitted" words (FOLLOW / THE T., MONTRO, the seven Ts and the
+   footer name): each is sized by script or by the viewport to fill its space exactly.
+   ========================================================= */
+:root{
+  /* — COLOUR · palette — */
+  --ink-0:#08090B;     /* the hall — deepest dark */
+  --ink:#0F1013;       /* page dark */
+  --ink-2:#141517;     /* raised dark */
+  --graphite:#2D3037;  /* image placeholders, pressed states */
+  --slate:#4A4E56;
+  --steel:#6F747A;
+  --arch:#9BA2AA;
+  --mist:#DBDEE3;
+  --paper:#E6E8EB;     /* the one light surface */
+  --white:#F4F5F7;
+  --ghost:#23262C;     /* the footer name before the light finds it */
+  --live:#9FE3B8; --err:#B9473B; --err-d:#E07A6E;
+  --shade:8,9,11;      /* --ink-0 as r,g,b — for every dark veil laid over a photograph */
+  /* — COLOUR · roles — text on dark: title / body / meta / quiet */
+  --d-1:var(--white); --d-2:var(--mist); --d-3:var(--arch); --d-4:var(--steel);
+  /* text on light: title / body / meta */
+  --l-1:var(--ink-2); --l-2:var(--slate); --l-3:#5E636A;   /* steel, deepened so 11px labels pass AA on paper */
+  /* hairlines: on dark, on light (soft / firm) */
+  --line:rgba(219,222,227,.14); --line-2:rgba(219,222,227,.32);
+  --line-d:rgba(20,21,23,.14); --line-d2:rgba(20,21,23,.26);
+
+  /* — TYPE · one family, three weights (300 numbers · 500 reading · 700 names and display) — */
+  --f:'Satoshi',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+  --fs-label:11px;                        /* uppercase labels */
+  --fs-btn:12px;                          /* uppercase buttons and links */
+  --fs-small:13px;                        /* notes, meta */
+  --fs-body:15px;                         /* running text */
+  --fs-lead:clamp(17px,1.35vw,22px);      /* intros, descriptions, inputs */
+  --fs-h4:clamp(20px,1.7vw,28px);         /* names in lists and cards */
+  --fs-h3:clamp(24px,2.2vw,38px);         /* chapter titles inside a section */
+  --fs-h2:clamp(32px,3.7vw,68px);         /* statements */
+  --fs-h1:clamp(48px,6vw,116px);          /* section titles */
+  --fs-d:clamp(56px,8.6vw,168px);         /* the one display line: "Something greater." */
+  --fs-num-s:clamp(30px,2.8vw,48px);      /* figures in a list */
+  --fs-num-m:clamp(40px,4.2vw,76px);      /* counters, the hotline */
+  --fs-num-l:clamp(96px,12.5vw,240px);    /* the year, 48+ */
+  --ls-label:.16em; --ls-btn:.14em; --ls-snug:-.02em; --ls-head:-.03em; --ls-display:-.045em; --ls-num:-.055em;
+  --lh-display:.9; --lh-head:1.08; --lh-title:1.15; --lh-lead:1.45; --lh-body:1.6;
+
+  /* — SPACE · a 4px scale — */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px;
+  /* layout */
+  --pad:clamp(20px,4vw,72px);             /* page gutter */
+  --gap:clamp(16px,2vw,32px);             /* grid gutter */
+  --sec:clamp(96px,15vh,176px);           /* section padding */
+  --hdr:88px;
+  --pin-top:calc(var(--hdr) + clamp(8px,2vh,24px));   /* every full-screen section starts here */
+  --fab:52px;                                         /* the pinned WhatsApp icon */
+  --pin-bot:calc(var(--s-5) + var(--fab) + var(--s-3)); /* …and ends here, clear of that icon */
+  --edge:clamp(24px,4.5vh,48px);                       /* the hero's own bottom edge (the icon waits until the hero has passed) */
+  --maxw:1680px;
+  --tw:31vw;           /* on-screen width of the hero T — matches the WebGL T exactly */
+  --ease:cubic-bezier(.16,1,.3,1);
+  --T:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='104' viewBox='0 0 200 104'%3E%3Cpath d='M0 0H200V38L174 16H117V70C117 92 130 98 160 98H164L166 104H34L36 98H40C70 98 83 92 83 70V16H26L0 38Z'/%3E%3C/svg%3E");
+}
+@media (max-aspect-ratio:9/10){:root{--tw:66vw}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;background:var(--ink);scrollbar-gutter:stable}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+body{font-family:var(--f);background:var(--ink);color:var(--d-2);font-size:var(--fs-body);line-height:var(--lh-body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+html.is-loading body{overflow:hidden}
+img,video{display:block;max-width:100%}
+svg{display:block}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit;background:none;border:0}
+button{cursor:pointer}
+:focus-visible{outline:1px solid currentColor;outline-offset:4px}
+::selection{background:var(--mist);color:var(--ink)}
+.wrap{width:100%;max-width:calc(var(--maxw) + var(--pad)*2);margin-inline:auto;padding-inline:var(--pad)}
+/* the three text styles everything else is made of */
+.lbl{font-size:var(--fs-label);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase;line-height:1.4}
+.display{font-weight:700;letter-spacing:var(--ls-display);line-height:var(--lh-display)}
+.ulink{font-size:var(--fs-btn);font-weight:700;letter-spacing:var(--ls-btn);text-transform:uppercase;display:inline-flex;gap:var(--s-3);align-items:center;border-bottom:1px solid currentColor;padding-bottom:var(--s-2)}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em;margin-bottom:-.12em;text-indent:0}
+.wi,.ch{display:inline-block;will-change:transform}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.stack{display:grid}
+.stack>*{grid-area:1/1}
+.stack>*:not(:first-child){opacity:0;visibility:hidden}
+.grain{position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 1.2s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-6%,-2%)}80%{transform:translate(5%,4%)}100%{transform:translate(0,0)}}
+.arrow{width:14px;height:14px;transition:transform .6s var(--ease)}
+.ulink:hover .arrow{transform:translateX(5px)}
+
+/* =========================================================
+   PRELOADER — a blueprint: the T is set out across the whole sheet, dimensioned, traced and
+   hatched as a section. Then the drawing turns to light, and that light opens the room:
+   the dark sheet clears outward from the T and the chrome T is standing where it was drawn.
+   ========================================================= */
+.loader{position:fixed;inset:0;z-index:200;pointer-events:none}
+/* until the drawing opens, the hall and its words stay dark */
+html.is-loading .hero-words,html.is-loading .ui,html.is-loading .hdr,html.is-loading .nav{visibility:hidden}
+/* the dark sheet carries a soft round opening at its centre: --r is the clear radius, --f the feathered edge */
+.ld-shade{position:absolute;inset:0;background:var(--ink);--r:0px;--f:1px;-webkit-mask-image:radial-gradient(circle at 50% 50%,transparent var(--r),#000 calc(var(--r) + var(--f)));mask-image:radial-gradient(circle at 50% 50%,transparent var(--r),#000 calc(var(--r) + var(--f)))}
+/* the light the drawing gives off when it turns solid */
+.ld-glow{position:absolute;left:50%;top:50%;width:var(--tw);height:calc(var(--tw)*.52);margin:calc(var(--tw)*-.26) 0 0 calc(var(--tw)/-2);opacity:0;filter:blur(calc(var(--tw)*.06));will-change:opacity,transform}
+.ld-glow svg{display:block;width:100%;height:100%;fill:#eef3fa}
+.ld-t .ld-cons line{stroke:rgba(219,222,227,.13)}
+.ld-t .ld-grips rect{fill:var(--ink);stroke:var(--mist);opacity:0}
+.ld-t .ld-pen circle{fill:#fff;opacity:0}
+/* drawing sheet: a fine 16px grid inside a 96px module */
+.ld-grid{position:absolute;inset:0;opacity:0;background-image:linear-gradient(rgba(219,222,227,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(219,222,227,.05) 1px,transparent 1px),linear-gradient(rgba(219,222,227,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(219,222,227,.022) 1px,transparent 1px);background-size:96px 96px,96px 96px,16px 16px,16px 16px;background-position:center center;animation:ldGrid 1.4s .1s var(--ease) forwards}
+@keyframes ldGrid{to{opacity:1}}   /* the sheet appears at once, even while the 3D T is still being prepared */
+.ld-t{position:absolute;left:50%;top:50%;width:var(--tw);height:calc(var(--tw)*.52);margin:calc(var(--tw)*-.26) 0 0 calc(var(--tw)/-2);overflow:visible}
+.ld-t .o{fill:none;stroke:var(--mist);stroke-dasharray:1 2;stroke-dashoffset:1;stroke-linejoin:round}
+.ld-t .ld-dim line{stroke:rgba(219,222,227,.55)}
+.ld-t .ld-dim text{fill:var(--d-3);font-family:var(--f);font-weight:500;font-size:5px;letter-spacing:.22em}
+.ld-t .cl{stroke:rgba(219,222,227,.4);stroke-dasharray:9 3 1.5 3}
+.ld-t .hl{stroke:rgba(219,222,227,.5)}
+.ld-t .fill{fill:#f2f5f9;opacity:0}
+/* crop marks at the corners of the sheet */
+.ld-corner{position:absolute;width:18px;height:18px;border:0 solid rgba(219,222,227,.45)}
+.ld-corner.tl{left:var(--s-5);top:var(--s-5);border-width:1px 0 0 1px;transform-origin:0 0}
+.ld-corner.tr{right:var(--s-5);top:var(--s-5);border-width:1px 1px 0 0;transform-origin:100% 0}
+.ld-corner.bl{left:var(--s-5);bottom:var(--s-5);border-width:0 0 1px 1px;transform-origin:0 100%}
+.ld-corner.br{right:var(--s-5);bottom:var(--s-5);border-width:0 1px 1px 0;transform-origin:100% 100%}
+.ld-ui{position:absolute;inset:0;padding:var(--s-7) calc(var(--pad) + var(--s-2));display:flex;flex-direction:column;justify-content:space-between;color:var(--d-3);pointer-events:none}
+.ld-top{display:flex;justify-content:space-between}
+.ld-bot{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--s-5)}
+.ld-quote{max-width:52%;font-size:var(--fs-lead);line-height:var(--lh-lead);letter-spacing:var(--ls-snug);color:var(--d-3);font-weight:500}
+.ld-quote span,.ld-quote b{opacity:0}
+.ld-quote b{color:var(--d-1);font-weight:700}
+/* the drawing's title block */
+.ld-block{display:grid;grid-template-columns:auto auto;border:1px solid rgba(219,222,227,.22);font-size:var(--fs-label);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--d-3);opacity:0}
+.ld-block>span{padding:var(--s-2) var(--s-3);border-bottom:1px solid var(--line);white-space:nowrap}
+.ld-block>span:nth-child(odd){border-right:1px solid var(--line)}
+.ld-block>span:nth-last-child(-n+2){border-bottom:0}
+.ld-block .ld-num{color:var(--d-1);font-variant-numeric:tabular-nums;text-align:right}
+.ld-block .ld-bar{display:flex;align-items:center}
+.ld-block .ld-bar i{position:relative;display:block;width:100%;min-width:90px;height:1px;background:rgba(219,222,227,.16);overflow:hidden}
+.ld-block .ld-bar b{position:absolute;inset:0;background:var(--mist);transform:scaleX(0);transform-origin:left}
+
+/* =========================================================
+   HEADER — always on screen; the blend keeps it legible over light and dark
+   ========================================================= */
+.hdr{position:fixed;left:0;right:0;top:0;z-index:100;height:var(--hdr);display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);mix-blend-mode:difference;color:#fff;pointer-events:none}
+.hdr>*{pointer-events:auto}
+.logo{display:flex;align-items:center;gap:10px}
+.logo svg{width:46px;height:24px;fill:currentColor}
+.logo.receive svg{animation:receive 1.2s var(--ease)}
+@keyframes receive{0%{transform:scale(1.35);filter:drop-shadow(0 0 12px #fff)}100%{transform:scale(1);filter:none}}
+.logo-txt{font-size:8.5px;font-weight:700;letter-spacing:.06em;line-height:1.05}   /* part of the logo lockup, not the type scale */
+/* navigation — a floating glass capsule: a lit pill marks the chapter you are in, a hairline shows how far you've come.
+   The glass is dark enough to stay legible over the light sections too. */
+.nav{position:fixed;top:calc(var(--hdr) / 2);left:50%;z-index:101;display:flex;align-items:center;gap:2px;padding:5px;border-radius:100px;transform:translate(-50%,-50%);background:rgba(var(--shade),.72);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);box-shadow:inset 0 0 0 1px rgba(255,255,255,.09),0 12px 40px -14px rgba(0,0,0,.5)}
+.nav a{position:relative;z-index:1;padding:var(--s-3) var(--s-4);border-radius:100px;font-size:var(--fs-label);font-weight:500;letter-spacing:var(--ls-btn);line-height:1;text-transform:uppercase;color:rgba(219,222,227,.78);white-space:nowrap;transition:color .5s}
+.nav a:hover{color:var(--d-1)}
+.nav a.on{color:var(--ink)}
+.nav-ind{position:absolute;left:0;top:5px;bottom:5px;width:0;border-radius:100px;background:var(--mist);opacity:0;box-shadow:0 0 18px rgba(219,222,227,.25)}
+.nav-prog{position:absolute;left:var(--s-5);right:var(--s-5);bottom:1px;height:1px;background:rgba(219,222,227,.08);overflow:hidden}
+.nav-prog i{position:absolute;inset:0;background:rgba(219,222,227,.55);transform-origin:left;transform:scaleX(0)}
+.hdr-r{display:flex;align-items:center;gap:var(--s-3)}
+.hotline{display:flex;align-items:center;gap:var(--s-2);border:1px solid rgba(255,255,255,.55);border-radius:100px;padding:var(--s-2) var(--s-4) var(--s-2) var(--s-3);font-size:var(--fs-small);font-weight:700;letter-spacing:.04em;line-height:24px}
+.hotline i{width:7px;height:7px;border-radius:50%;background:#fff;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.6)}70%{box-shadow:0 0 0 9px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+/* Enquire: the blend inverts it, so the solid button reads light on dark sections and dark on light ones */
+.enq{display:inline-flex;align-items:center;height:42px;padding:0 var(--s-5);border-radius:100px;background:#fff;color:#000;font-size:var(--fs-btn);font-weight:700;letter-spacing:var(--ls-btn);text-transform:uppercase}
+/* phones: a glass dock along the bottom — Enquire and WhatsApp, after the hero, out of the way of the contact section */
+.dock{display:none}
+/* the pinned WhatsApp icon — dark glass that reads over light and dark sections; the green dot says an advisor is there */
+.wa{position:fixed;right:var(--s-5);bottom:var(--s-5);z-index:98;display:grid;place-items:center;width:var(--fab);height:var(--fab);border-radius:50%;background:rgba(var(--shade),.74);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);color:var(--white);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 14px 40px -12px rgba(0,0,0,.55);opacity:0;visibility:hidden;transform:scale(.4);pointer-events:none;transition:transform .7s var(--ease),opacity .5s,background .4s,color .4s,visibility 0s .7s}
+.wa.on{opacity:1;visibility:visible;transform:none;pointer-events:auto;transition:transform .7s var(--ease),opacity .5s,background .4s,color .4s,visibility 0s}
+.wa svg{width:22px;height:22px}
+.wa::after{content:"";position:absolute;top:5px;right:5px;width:9px;height:9px;border-radius:50%;background:var(--live);box-shadow:0 0 0 2px var(--ink)}
+.wa:hover{background:var(--mist);color:var(--ink)}
+.wa-tip{position:absolute;right:calc(100% + var(--s-3));top:50%;transform:translate(8px,-50%);white-space:nowrap;padding:var(--s-2) var(--s-3);border-radius:100px;background:var(--ink-2);color:var(--d-1);font-size:var(--fs-label);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase;line-height:1.4;opacity:0;pointer-events:none;transition:opacity .4s,transform .6s var(--ease)}
+.wa:hover .wa-tip{opacity:1;transform:translate(0,-50%)}
+.menu-open .wa{opacity:0;visibility:hidden;pointer-events:none}
+.burger{display:none;width:42px;height:42px;border:1px solid rgba(255,255,255,.55);border-radius:50%;position:relative}
+.burger span{position:absolute;left:12px;right:12px;height:1.5px;background:#fff;transition:transform .5s var(--ease)}
+.burger span:nth-child(1){top:16px}.burger span:nth-child(2){top:24px}
+.menu-open .burger span:nth-child(1){transform:translateY(4px) rotate(45deg)}
+.menu-open .burger span:nth-child(2){transform:translateY(-4px) rotate(-45deg)}
+.menu{position:fixed;inset:0;z-index:99;background:var(--ink-2);clip-path:inset(0 0 100% 0);display:flex;flex-direction:column;justify-content:flex-end;padding:calc(var(--hdr) + var(--s-7)) var(--pad) var(--s-7);transition:clip-path .9s var(--ease)}
+.menu-open .menu{clip-path:inset(0 0 0 0)}
+.menu a{font-size:var(--fs-h1);font-weight:700;letter-spacing:var(--ls-display);line-height:1;text-transform:uppercase;padding:var(--s-2) 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline}
+.menu a sup{font-size:var(--fs-label);font-weight:500;letter-spacing:var(--ls-label);color:var(--d-3)}
+.menu-foot{display:flex;justify-content:space-between;margin-top:var(--s-6);color:var(--d-3)}
+.menu-foot a{font-size:var(--fs-label);border:0;padding:0}
+
+/* =========================================================
+   01 STAGE — hero + manifesto
+   ========================================================= */
+.stage{position:relative;height:100vh;height:100svh;overflow:hidden;background:var(--ink-0)}
+.plate{position:absolute;inset:-3%;z-index:0;opacity:0}
+.plate img{width:100%;height:100%;object-fit:cover}
+.plate-shade{position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(var(--shade),.72) 0%,rgba(var(--shade),0) 24%,rgba(var(--shade),0) 58%,rgba(var(--shade),.88) 100%),radial-gradient(120% 90% at 50% 45%,transparent 50%,rgba(0,0,0,.55) 100%)}
+.mem{position:absolute;inset:0;z-index:0;opacity:0}
+.mem img{width:100%;height:100%;object-fit:cover;filter:saturate(.8)}
+.mem::after{content:"";position:absolute;inset:0;background:radial-gradient(90% 80% at 50% 50%,rgba(var(--shade),.35),rgba(var(--shade),.9))}
+.dim{position:absolute;inset:0;z-index:0;background:var(--ink-0);opacity:0;pointer-events:none}
+.beam{position:absolute;left:50%;top:-10%;width:56vw;height:120%;transform:translateX(-50%);z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(225,234,246,.45),rgba(170,186,208,.12) 40%,transparent 78%);clip-path:polygon(46% 0,54% 0,92% 100%,8% 100%);filter:blur(30px);mix-blend-mode:screen;opacity:0}
+.hero-words{position:absolute;inset:0;z-index:1;pointer-events:none}
+.hero-word{position:absolute;font-weight:700;letter-spacing:-.05em;line-height:1;white-space:nowrap;overflow:hidden;color:var(--d-2)}
+.hero-word.l{left:var(--pad);top:var(--hl-top,28%);font-size:var(--hl-fs,10vw)}
+.hero-word.r{right:var(--pad);top:var(--hr-top,52%);font-size:var(--hr-fs,13vw);color:var(--d-3)}
+.t-layer{position:absolute;inset:0;z-index:2;pointer-events:none}
+.t-canvas{position:absolute;inset:0;width:100%;height:100%}
+.t-fallback{position:absolute;left:50%;top:50%;width:var(--tw);transform:translate(-50%,-50%);display:none;fill:url(#chrome)}
+.no-webgl .t-fallback{display:block}.no-webgl .t-canvas{display:none}
+.ring{position:absolute;left:50%;top:50%;width:var(--tw);aspect-ratio:1;border-radius:50%;border:1px solid rgba(235,240,247,.8);transform:translate(-50%,-50%) scale(0);opacity:0;z-index:2;pointer-events:none;box-shadow:0 0 40px rgba(220,230,244,.35),inset 0 0 40px rgba(220,230,244,.2)}
+.ui{position:absolute;inset:0;z-index:3;pointer-events:none}
+.ui a,.ui button{pointer-events:auto}
+.hero-side{position:absolute;top:var(--pin-top);color:var(--d-3)}
+.hero-side.l{left:var(--pad)}.hero-side.r{right:var(--pad);text-align:right}
+.hero-side span{display:block;margin-bottom:var(--s-1)}
+.hero-side .q{color:var(--d-4)}
+.hero-bottom{position:absolute;left:var(--pad);right:var(--pad);bottom:var(--edge);display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:var(--s-5)}
+.hb-l h3{font-size:var(--fs-h4);font-weight:700;letter-spacing:var(--ls-snug);color:var(--d-1);line-height:var(--lh-title);margin-bottom:var(--s-3)}
+.hb-l p{max-width:360px;font-size:var(--fs-body);color:var(--d-3);line-height:var(--lh-body)}
+/* scroll cue — a small T travels down a line: literally, follow the T */
+.cue{display:flex;justify-content:center}
+.cue-line{position:relative;width:1px;height:34px;background:linear-gradient(180deg,rgba(219,222,227,0),rgba(219,222,227,.45) 30%,rgba(219,222,227,.45) 70%,rgba(219,222,227,0))}
+.cue-line svg{position:absolute;left:50%;top:0;width:16px;margin-left:-8px;fill:var(--d-1);filter:drop-shadow(0 0 6px rgba(255,255,255,.5));animation:follow 2.2s var(--ease) infinite}
+@keyframes follow{0%{transform:translateY(-4px);opacity:0}20%{opacity:1}70%{opacity:1}100%{transform:translateY(30px);opacity:0}}
+/* new launch — a wide, low card: picture left, name right — it never reaches the words above */
+.launch{justify-self:end;display:flex;align-items:center;gap:var(--s-4)}
+.launch-media{position:relative;flex:none;display:block;width:clamp(150px,12vw,196px);aspect-ratio:16/10;overflow:hidden;background:var(--graphite);box-shadow:0 30px 60px -30px rgba(0,0,0,.85)}
+.launch-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.1);transition:opacity 1s var(--ease),transform 4.6s linear}
+.launch-media img.on{opacity:1;transform:scale(1)}
+.launch-media::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(var(--shade),.55),rgba(var(--shade),0) 40%);pointer-events:none}
+.launch-txt{display:flex;flex-direction:column;min-width:0}
+.launch-tag{display:flex;align-items:center;gap:var(--s-2);margin-bottom:var(--s-2);font-size:var(--fs-label);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase;line-height:1.4;color:var(--d-3)}
+.launch-tag i{width:6px;height:6px;border-radius:50%;background:var(--live);animation:live 2s infinite}
+@keyframes live{0%{box-shadow:0 0 0 0 rgba(159,227,184,.6)}70%{box-shadow:0 0 0 7px rgba(159,227,184,0)}100%{box-shadow:0 0 0 0 rgba(159,227,184,0)}}
+.launch-dots{position:absolute;left:10px;right:10px;bottom:8px;z-index:2;display:flex;gap:4px}
+.launch-dots i{position:relative;flex:1;height:2px;background:rgba(244,245,247,.25);overflow:hidden}
+.launch-dots b{position:absolute;inset:0;background:var(--white);transform:scaleX(0);transform-origin:left}
+.launch-name{display:block;font-size:var(--fs-h4);font-weight:700;letter-spacing:var(--ls-head);color:var(--d-1);line-height:1.05;white-space:nowrap}
+.launch-sub{display:block;margin-top:var(--s-1);font-size:var(--fs-small);color:var(--d-3)}
+.launch-go{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;color:var(--d-2);transition:background .5s var(--ease),color .5s,border-color .5s}
+.launch:hover .launch-go{background:var(--mist);color:var(--ink);border-color:var(--mist)}
+.launch:hover .arrow{transform:translateX(3px)}
+.mf{position:absolute;left:var(--pad);right:var(--pad);bottom:calc(var(--edge) + var(--s-5));display:grid;grid-template-columns:auto 1fr;align-items:end;gap:var(--s-6)}
+.mf-count{display:flex;flex-direction:column;gap:var(--s-2);color:var(--d-3);opacity:0}
+.mf-count b{font-size:var(--fs-num-m);font-weight:300;letter-spacing:var(--ls-num);line-height:.82;color:var(--d-2);font-variant-numeric:tabular-nums;height:.82em;overflow:hidden;display:block}
+.mf-count b i{display:block;font-style:normal}
+.mf-count b span{display:block;height:.82em}
+.mf-lines{position:relative;height:clamp(80px,13vh,150px)}
+.mf-line{position:absolute;left:0;bottom:0;max-width:min(1000px,100%)}
+.mf-line p{font-size:var(--fs-h2);line-height:var(--lh-head);letter-spacing:var(--ls-head);font-weight:500;color:var(--d-2)}
+.mf-line p b{font-weight:700;color:var(--d-1)}
+.together{position:absolute;left:0;right:0;top:56%;transform:translateY(-50%);text-align:center}
+.together small{display:block;font-size:var(--fs-lead);color:var(--d-3);margin-bottom:var(--s-4)}
+.together h2{font-size:var(--fs-d);font-weight:700;letter-spacing:var(--ls-display);line-height:.86;color:var(--d-1)}
+.together h2 .w{padding-bottom:.2em;margin-bottom:-.2em}
+.formed{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:calc(var(--hdr) + 7vh) var(--pad) 12vh;text-align:center}
+.formed small{font-size:var(--fs-lead);color:var(--d-3)}
+.formed p{font-size:var(--fs-h3);letter-spacing:var(--ls-snug);color:var(--d-2);font-weight:500;max-width:760px;line-height:var(--lh-title)}
+.formed p b{color:var(--d-1);font-weight:700}
+
+/* =========================================================
+   02 SINCE 1995 — statement · history · record. One light surface for every light section.
+   ========================================================= */
+.since,.history,.records,.projects{background:var(--paper);color:var(--l-1)}
+/* sections meet on fractional pixels; each one paints 2px above itself in its own colour so no hairline of the dark page shows through */
+.since,.history,.records,.projects{box-shadow:0 -2px 0 var(--paper)}
+.montro,.cta{box-shadow:0 -2px 0 var(--ink)}
+.values{box-shadow:0 -2px 0 var(--ink-2)}
+.since ::selection,.history ::selection,.records ::selection,.projects ::selection,.cta-card ::selection{background:var(--ink-2);color:var(--paper)}
+/* the statement holds the whole screen; the words light up as you scroll, then it lets go */
+.since{height:100vh;height:100svh;display:flex;align-items:center}
+.since-lead{margin:0 auto;max-width:1180px;font-size:var(--fs-h2);line-height:var(--lh-head);letter-spacing:var(--ls-head);font-weight:500;text-align:center;text-wrap:balance}
+.since-lead b{font-weight:700}
+
+/* 02.1 — pinned timeline */
+.hs-pin{height:100vh;height:100svh;display:flex;flex-direction:column;padding-top:var(--pin-top);padding-bottom:var(--pin-bot)}
+.hs-body{flex:1;min-height:0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);margin-top:var(--s-4)}
+.hs-l{grid-column:1/6;display:flex;flex-direction:column;justify-content:space-between;min-height:0}
+.hs-r{grid-column:6/13;display:flex;flex-direction:column;min-height:0}
+.hs-lead{max-width:340px;font-size:var(--fs-lead);line-height:var(--lh-lead);letter-spacing:var(--ls-snug);color:var(--l-2)}
+.hs-ruler{position:relative;height:48px;margin-top:var(--s-5)}
+.hs-base,.hs-fill{position:absolute;left:0;right:0;top:16px;height:1px;background:var(--line-d)}
+.hs-fill{background:var(--l-1);transform-origin:left;transform:scaleX(0)}
+.hs-ticks{position:absolute;inset:0}
+.hs-ticks i{position:absolute;top:16px;width:1px;height:6px;background:var(--line-d2);transition:background .4s,height .6s var(--ease)}
+.hs-ticks i.mj{height:12px}
+.hs-ticks i.on{background:var(--l-1)}
+.hs-ticks i.mj.on{height:16px}
+.hs-ticks small{position:absolute;top:34px;transform:translateX(-50%);font-size:var(--fs-label);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase;white-space:nowrap;color:var(--l-3);transition:color .5s}
+.hs-ticks small.first{transform:none}
+.hs-ticks small.last{transform:translateX(-100%)}
+.hs-ticks small.on{color:var(--l-1)}
+.hs-cur{position:absolute;left:0;top:3px;width:18px;margin-left:-9px}
+.hs-cur svg{width:18px;fill:var(--l-1)}
+.odo{display:flex;font-size:var(--fs-num-l);font-weight:300;letter-spacing:var(--ls-num);line-height:.82;color:var(--l-1);font-variant-numeric:tabular-nums;margin-left:-.04em}
+.odo .d{display:block;height:.82em;overflow:hidden}
+.odo .d-in{display:block}
+.odo i{display:block;height:.82em;font-style:normal;text-align:center}
+.hs-eras{margin-top:var(--s-5);max-width:440px}
+.hs-era h3{font-size:var(--fs-h3);font-weight:500;letter-spacing:var(--ls-snug);line-height:var(--lh-head);margin-bottom:var(--s-3)}
+.hs-era p{font-size:var(--fs-body);line-height:var(--lh-body);color:var(--l-2)}
+.hs-frame{position:relative;flex:1;min-height:0;overflow:hidden;background:var(--graphite)}
+.hs-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;clip-path:inset(100% 0 0 0)}
+.hs-frame img:first-child{clip-path:inset(0 0 0 0)}
+.hs-cap{display:flex;justify-content:space-between;margin-top:var(--s-3);color:var(--l-3)}
+
+/* 02.2 — track record */
+.records{padding:calc(var(--sec) * .6) 0 var(--sec)}
+/* proof of delivery: four figures in one row, each with its label above */
+.proof{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--gap);margin-bottom:var(--s-9);border-top:1px solid var(--l-1)}
+.proof li{display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:var(--s-3);padding-top:var(--s-5)}
+.proof b{display:flex;align-items:flex-start;font-size:var(--fs-num-m);font-weight:300;letter-spacing:var(--ls-num);line-height:.9;color:var(--l-1);font-variant-numeric:tabular-nums}
+.proof sup{font-size:.42em;font-weight:500;letter-spacing:0;margin:.1em 0 0 .08em;line-height:1}
+.proof .lbl{max-width:200px;color:var(--l-3)}
+.rec{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:start}
+.rec-l{grid-column:1/5;position:sticky;top:var(--pin-top)}
+.rec-big{display:flex;align-items:flex-start;font-size:var(--fs-num-l);font-weight:300;letter-spacing:var(--ls-num);line-height:.8;margin-left:-.04em;font-variant-numeric:tabular-nums}
+.rec-big sup{font-size:.32em;font-weight:500;letter-spacing:0;margin:.08em 0 0 .06em;line-height:1}
+.rec-l p{margin-top:var(--s-5);max-width:320px;font-size:var(--fs-body);color:var(--l-2)}
+.rec-list{grid-column:6/13;list-style:none;border-top:1px solid var(--l-1)}
+.rec-key{display:inline-flex;align-items:center;gap:var(--s-2);margin-top:var(--s-5);color:var(--l-3)}
+.rec-key svg{width:14px;height:8px;fill:var(--l-1)}
+.rec-row{position:relative;display:grid;grid-template-columns:44px minmax(0,1.15fr) minmax(0,1fr) 84px;align-items:center;column-gap:var(--s-5);padding:var(--s-5) 0;border-bottom:1px solid var(--line-d)}
+.rec-row .dest small{display:block;margin-top:var(--s-2);font-size:var(--fs-label);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--l-3)}
+/* a unit chart: one small T per project, lit one by one */
+.tks{display:flex;flex-wrap:wrap;gap:6px 5px;align-content:center}
+.tks svg{width:14px;height:8px;fill:var(--l-1);opacity:.12}
+.rec-row::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--l-1);transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease)}
+.rec-row:hover::after{transform:scaleX(1)}
+.rec-row .n{font-size:var(--fs-label);letter-spacing:var(--ls-label);color:var(--l-3);font-variant-numeric:tabular-nums}
+.rec-row .dest{font-size:var(--fs-h4);font-weight:500;letter-spacing:var(--ls-snug);line-height:var(--lh-title);transition:transform .7s var(--ease)}
+.rec-row:hover .dest{transform:translateX(12px)}
+.rec-row .num{font-size:var(--fs-num-s);font-weight:300;letter-spacing:var(--ls-num);line-height:1;text-align:right;font-variant-numeric:tabular-nums}
+.rec-row .num sup{font-size:.45em;margin-left:2px}
+
+/* =========================================================
+   03 MONTRO
+   ========================================================= */
+.montro{position:relative;height:100vh;height:100svh;overflow:hidden;background:var(--ink)}
+.m-intro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:1}
+.m-word{font-size:clamp(70px,17vw,330px);font-weight:700;letter-spacing:-.02em;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(219,222,227,.28);display:flex;gap:.04em}
+/* the caption sits at the foot of the screen, clear of the picture in the T */
+.m-sub{position:absolute;left:0;right:0;bottom:calc(var(--pin-bot) + var(--s-5));font-size:var(--fs-lead);color:var(--d-3)}
+.m-mask{position:absolute;inset:0;z-index:2;--ms:26vw;-webkit-mask-image:var(--T);mask-image:var(--T);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:50% 50%;mask-position:50% 50%;-webkit-mask-size:var(--ms) auto;mask-size:var(--ms) auto}
+.m-scene{position:absolute;inset:0}
+.m-scene img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 1.1s var(--ease)}
+.m-scene img.off{opacity:0}
+.m-shade{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;background:linear-gradient(20deg,rgba(var(--shade),.88) 0%,rgba(var(--shade),.5) 32%,rgba(var(--shade),0) 60%),linear-gradient(180deg,rgba(var(--shade),.55) 0%,rgba(var(--shade),0) 20%),linear-gradient(0deg,rgba(var(--shade),.82) 0%,rgba(var(--shade),.45) 24%,rgba(var(--shade),0) 46%)}
+.sweep{position:absolute;top:0;bottom:0;width:40vw;left:-45vw;z-index:4;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,244,225,.22),transparent);mix-blend-mode:screen}
+.m-content{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;justify-content:flex-end;padding-top:var(--pin-top);padding-bottom:var(--pin-bot);pointer-events:none}
+.m-content a,.m-content button{pointer-events:auto}
+.m-bot{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;column-gap:var(--s-7)}
+.m-title{font-size:var(--fs-h1);font-weight:700;letter-spacing:var(--ls-display);line-height:var(--lh-display);color:var(--d-1)}
+.m-lead{max-width:460px;margin:var(--s-5) 0 var(--s-6);font-size:var(--fs-lead);line-height:var(--lh-lead);color:var(--d-2)}
+.m-actions{display:flex;gap:var(--s-3);align-items:center}
+/* the launch in four facts: a small label over each answer */
+.m-facts{display:grid;grid-template-columns:repeat(4,auto);justify-content:start;gap:var(--s-3) var(--s-6);margin:0 0 var(--s-6);padding-top:var(--s-4);border-top:1px solid var(--line-2);max-width:640px}
+.m-facts dt{font-size:var(--fs-label);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--d-3);margin-bottom:var(--s-1)}
+.m-facts dd{font-size:var(--fs-lead);font-weight:500;letter-spacing:var(--ls-snug);color:var(--d-1);white-space:nowrap}
+/* the residence's controls sit on their own dark glass, so they read over any photograph */
+.m-panel{width:clamp(260px,21vw,320px);padding:var(--s-5);background:rgba(var(--shade),.62);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 30px 60px -30px rgba(0,0,0,.7)}
+.m-panel-t{display:block;color:var(--d-3);margin-bottom:var(--s-3)}
+.dn{display:flex;gap:var(--s-1);padding:var(--s-1);margin-top:var(--s-4);border:1px solid var(--line);border-radius:100px}
+.dn button{flex:1;justify-content:center;font-size:var(--fs-btn);font-weight:700;letter-spacing:var(--ls-btn);text-transform:uppercase;padding:var(--s-3) var(--s-4);border-radius:100px;color:var(--d-3);display:flex;gap:var(--s-2);align-items:center;transition:background .5s,color .5s}
+.dn button.on{background:var(--mist);color:var(--ink)}
+.dn svg{width:14px;height:14px}
+.m-scenes{list-style:none}
+.m-scenes button{position:relative;display:flex;align-items:baseline;gap:var(--s-4);width:100%;padding:var(--s-3) 0;border-bottom:1px solid var(--line);font-size:var(--fs-btn);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--d-3);text-align:left;transition:color .5s,padding .6s var(--ease)}
+.m-scenes button span{font-size:var(--fs-label);opacity:.7;font-variant-numeric:tabular-nums}
+.m-scenes button::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--white);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease)}
+.m-scenes button.on{color:var(--d-1);padding-left:var(--s-3)}
+.m-scenes button.on::after{transform:scaleX(1)}
+.m-scenes button:hover{color:var(--d-1)}
+/* buttons on dark: one solid (play), one outlined (pill) — the same height, the same text */
+.play{display:inline-flex;align-items:center;gap:var(--s-3);font-size:var(--fs-btn);font-weight:700;letter-spacing:var(--ls-btn);text-transform:uppercase;padding:6px var(--s-5) 6px 6px;border-radius:100px;background:var(--mist);color:var(--ink)}
+.play i{width:36px;height:36px;border-radius:50%;background:var(--ink);display:grid;place-items:center}
+.play i::after{content:"";border-left:9px solid var(--mist);border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:3px}
+.pill{display:inline-flex;align-items:center;justify-content:center;height:48px;font-size:var(--fs-btn);font-weight:700;letter-spacing:var(--ls-btn);text-transform:uppercase;padding:0 var(--s-5);border:1px solid var(--line-2);border-radius:100px;color:var(--d-2);transition:background .45s,color .45s,border-color .45s}
+.pill:hover{background:var(--mist);color:var(--ink);border-color:var(--mist)}
+.film{position:fixed;inset:0;z-index:150;background:rgba(var(--shade),.94);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .6s,visibility .6s}
+.film.open{opacity:1;visibility:visible}
+.film video{width:min(1280px,92vw);max-height:80vh;background:#000}
+.film-x{position:absolute;top:var(--s-5);right:var(--pad);font-size:var(--fs-btn);letter-spacing:var(--ls-btn);font-weight:700;text-transform:uppercase;color:var(--d-2);border:1px solid var(--line-2);border-radius:100px;padding:var(--s-3) var(--s-4)}
+
+/* =========================================================
+   03 ADDRESSES — four panels side by side, like four buildings on one street. One is open at a time:
+   the photograph widens, its name and facts rise in; the others stand narrow, named on their edge.
+   ========================================================= */
+.projects{position:relative;--grow:5.2}
+.pj-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:end;padding-top:var(--sec);padding-bottom:var(--s-7)}
+.pj-head h2{grid-column:1/9;font-size:var(--fs-h1)}
+.pj-head h2 .muted{color:var(--l-3)}
+.pj-head p{grid-column:9/13;max-width:360px;font-size:var(--fs-lead);line-height:var(--lh-lead);color:var(--l-2)}
+.pj-pin{height:100vh;height:100svh;padding-top:var(--pin-top);padding-bottom:var(--pin-bot)}
+.pj-row{display:flex;gap:var(--s-3);height:100%}
+.pj-p{position:relative;flex:1 1 0;min-width:0;min-height:0;overflow:hidden;background:var(--graphite);color:var(--d-2);cursor:pointer;transition:flex-grow 1.1s var(--ease)}
+.pj-p.on{flex-grow:var(--grow);cursor:default}
+/* the photograph is always as wide as an open panel, so opening reveals more of it instead of stretching it */
+.pj-p img{position:absolute;top:0;left:50%;width:var(--os,100%);max-width:none;height:100%;object-fit:cover;transform:translateX(-50%) scale(1.06);transition:transform 1.6s var(--ease)}
+.pj-p.on img{transform:translateX(-50%) scale(1)}
+.pj-p::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,rgba(var(--shade),.86) 0%,rgba(var(--shade),.5) 34%,rgba(var(--shade),0) 62%),linear-gradient(180deg,rgba(var(--shade),.45),rgba(var(--shade),0) 22%)}
+.pj-veil{position:absolute;inset:0;z-index:1;background:rgba(var(--shade),.42);transition:opacity 1s var(--ease)}
+.pj-p:not(.on):hover .pj-veil{opacity:.55}
+.pj-p.on .pj-veil{opacity:0}
+/* closed: the number at the top, the name standing on the panel's edge */
+.pj-closed{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:var(--s-5) 0;transition:opacity .5s}
+.pj-closed .n{font-size:var(--fs-label);letter-spacing:var(--ls-label);color:var(--d-3);font-variant-numeric:tabular-nums}
+.pj-closed h3{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;font-size:var(--fs-h4);font-weight:700;letter-spacing:var(--ls-head);color:var(--d-1)}
+.pj-p.on .pj-closed{opacity:0;transition-duration:.25s}
+/* open: status and place at the top, the name and the facts at the foot */
+.pj-open{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;padding:var(--s-6);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s,visibility 0s .3s}
+.pj-p.on .pj-open{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .5s .4s,visibility 0s}
+.pj-top{display:flex;justify-content:space-between;align-items:center;gap:var(--s-4);color:var(--d-2)}
+.pj-top .tag{display:inline-flex;align-items:center;gap:var(--s-2);height:28px;padding:0 var(--s-3);border-radius:100px;background:rgba(var(--shade),.4);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px var(--line-2);font-size:var(--fs-label);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase;white-space:nowrap;color:var(--d-1)}
+.pj-top .tag.live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--live);animation:live 2s infinite}
+.pj-bot{max-width:640px}
+.pj-name{font-size:var(--fs-h1);font-weight:700;letter-spacing:var(--ls-display);line-height:var(--lh-display);color:var(--d-1)}
+.pj-line{max-width:480px;margin-top:var(--s-4);font-size:var(--fs-lead);line-height:var(--lh-lead);color:var(--d-2)}
+.pj-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-width:560px;margin-top:var(--s-5);border-top:1px solid var(--line-2)}
+.pj-facts div{padding:var(--s-3) var(--s-3) 0 0}
+.pj-facts div+div{padding-left:var(--s-4);border-left:1px solid var(--line)}
+.pj-facts dt{margin-bottom:var(--s-1);font-size:var(--fs-label);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--d-3)}
+.pj-facts dd{font-size:var(--fs-body);font-weight:500;color:var(--d-1)}
+.pj-acts{display:flex;flex-wrap:wrap;gap:var(--s-3);margin-top:var(--s-5)}
+.pj-acts .pill{border-color:rgba(219,222,227,.45);color:var(--d-1);background:rgba(var(--shade),.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.pj-acts .pill:hover{background:var(--mist);color:var(--ink)}
+/* the solid button on dark: the same shape as the solid button on light (Send request) */
+.pill-l{display:inline-flex;align-items:center;gap:var(--s-4);height:48px;padding:0 var(--s-1) 0 var(--s-5);border-radius:100px;background:var(--mist);color:var(--ink);font-size:var(--fs-btn);font-weight:700;letter-spacing:var(--ls-btn);text-transform:uppercase;white-space:nowrap}
+.pill-l i{width:40px;height:40px;border-radius:50%;background:var(--ink);color:var(--mist);display:grid;place-items:center}
+.pill-l:hover .arrow{transform:translateX(4px)}
+/* the fourth panel: the drawing sheet from the preloader, the visitor's T being set out on it */
+.pj-you{background:var(--ink)}
+.pj-you::after{background:linear-gradient(0deg,rgba(var(--shade),.7) 0%,rgba(var(--shade),0) 50%)}
+.pj-plan{position:absolute;inset:0;background-image:linear-gradient(rgba(219,222,227,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(219,222,227,.05) 1px,transparent 1px),linear-gradient(rgba(219,222,227,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(219,222,227,.022) 1px,transparent 1px);background-size:96px 96px,96px 96px,16px 16px,16px 16px;background-position:center center}
+/* closed: the drawing stands small in the narrow panel; open: it moves to the upper right, clear of the words below */
+.pj-draw{position:absolute;right:11%;top:38%;width:78%;transform:translateY(-50%);overflow:visible;opacity:.35;transition:opacity 1s,right 1.1s var(--ease),top 1.1s var(--ease),width 1.1s var(--ease),transform 1.1s var(--ease)}
+.pj-you.on .pj-draw{opacity:1;right:var(--s-6);top:calc(var(--s-8) + var(--s-3));width:min(44%,420px);transform:none}
+.pj-draw .pj-o{fill:none;stroke:var(--mist);stroke-width:1;stroke-linejoin:round;stroke-dasharray:1 2;stroke-dashoffset:0}
+.pj-draw .pj-cl{stroke:rgba(219,222,227,.3);stroke-width:.5;stroke-dasharray:6 2 1 2}
+.pj-draw .pj-dim line{stroke:rgba(219,222,227,.45);stroke-width:.5}
+.pj-draw .pj-dim text{fill:var(--d-3);font-family:var(--f);font-size:5px;font-weight:500;letter-spacing:.22em}
+
+/* =========================================================
+   03b WHAT'S AROUND — big place names over the desert road at dusk; under each name, its road:
+   lit as far as the drive is long, with the T at the end of it
+   ========================================================= */
+.near{position:relative;overflow:hidden;background:var(--ink);color:var(--d-2);padding:var(--sec) 0 calc(var(--sec) * .8);box-shadow:0 -2px 0 var(--ink)}
+.near-bg{position:absolute;left:0;right:0;top:-10%;bottom:-10%;z-index:0}
+.near-bg img{width:100%;height:100%;object-fit:cover;opacity:.32;filter:saturate(.7)}
+.near-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(var(--shade),.92) 0%,rgba(var(--shade),.6) 55%,rgba(var(--shade),.35) 100%),linear-gradient(180deg,var(--ink) 0%,rgba(15,16,19,0) 24%,rgba(15,16,19,0) 76%,var(--ink) 100%)}
+.near .wrap{position:relative;z-index:1}
+.near-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:end}
+.near-head h2{grid-column:1/8;font-size:var(--fs-h1);color:var(--d-1)}
+.near-head h2 .muted{color:var(--d-3)}
+.near-lead{grid-column:9/13;max-width:380px;font-size:var(--fs-lead);line-height:var(--lh-lead);color:var(--d-2)}
+.near-list{list-style:none;margin-top:var(--s-8)}
+.near-list li{position:relative;display:grid;grid-template-columns:48px minmax(0,1fr) auto;align-items:end;column-gap:var(--s-5);padding:var(--s-5) 0 var(--s-4)}
+.near-list .n{align-self:start;padding-top:.6em;font-size:var(--fs-label);letter-spacing:var(--ls-label);color:var(--d-4);font-variant-numeric:tabular-nums}
+.near-list .nm{font-size:var(--fs-h2);font-weight:500;letter-spacing:var(--ls-head);line-height:var(--lh-head);color:var(--d-1);transition:transform .7s var(--ease)}
+.near-list .nm small{display:block;margin-top:var(--s-2);color:var(--d-3)}
+.near-list b{display:flex;align-items:baseline;gap:var(--s-2);font-size:var(--fs-num-m);font-weight:300;letter-spacing:var(--ls-num);line-height:.9;color:var(--d-1);font-variant-numeric:tabular-nums}
+.near-list b small{font-size:var(--fs-label);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--d-3)}
+.near-list li:hover .nm{transform:translateX(12px)}
+/* the road: a hairline the full width of the row, lit from the T's address to the place */
+.near-road{position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line);--p:0}
+.near-fill{position:absolute;inset:0;background:var(--mist);transform-origin:left;transform:scaleX(var(--p));transition:background .4s}
+.near-t{position:absolute;bottom:2px;left:calc(var(--p) * 100%);width:18px;height:10px;margin-left:-9px;fill:var(--d-1)}
+.near-list li:hover .near-fill{background:var(--white)}
+.near-note{margin-top:var(--s-5);font-size:var(--fs-small);color:var(--d-4)}
+
+/* =========================================================
+   05 SEVEN Ts — seven Ts stand in one column; the light passes along each word
+   ========================================================= */
+.values{position:relative;background:var(--ink-2);color:var(--d-2)}
+/* left: the words and what they mean — right: one tall photograph, edge to edge */
+.val-pin{position:relative;height:100vh;height:100svh;overflow:hidden}
+.val-media{position:absolute;top:0;right:0;bottom:0;width:40vw}
+.val-media::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(20,21,23,.6),rgba(20,21,23,0) 32%),linear-gradient(0deg,rgba(var(--shade),.8),rgba(var(--shade),0) 36%)}
+.val-cap{position:absolute;left:var(--s-6);right:var(--s-6);bottom:var(--pin-bot);z-index:2;display:flex;justify-content:space-between;align-items:flex-end;color:var(--d-2)}
+.val-cap b{font-size:var(--fs-num-m);font-weight:300;letter-spacing:var(--ls-num);line-height:.8;color:var(--d-1);font-variant-numeric:tabular-nums}
+.val-cap b small{font-size:.3em;letter-spacing:.1em;color:var(--d-3);margin-left:var(--s-2)}
+.val-content{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;padding:var(--pin-top) calc(40vw + var(--pad)) var(--pin-bot) var(--pad)}
+.val-list{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;list-style:none;font-size:clamp(30px,min(5vw,8vh),104px);font-weight:700;letter-spacing:var(--ls-display);line-height:.94;text-transform:uppercase}   /* fitted: seven rows always fill the column */
+.val-row{display:flex;align-items:flex-start;width:max-content;max-width:100%;cursor:pointer}
+.vt{color:var(--d-1)}
+.vr{position:relative;display:block;white-space:nowrap}
+.vr-base{color:rgba(219,222,227,.1);transition:color .6s}
+.val-row:hover .vr-base{color:rgba(219,222,227,.28)}
+.vr-lit{position:absolute;left:0;top:0;color:var(--d-1);clip-path:inset(0 100% 0 0)}
+.val-row:first-child .vr-lit{clip-path:inset(0 0 0 0)}
+.vn{font-size:var(--fs-label);font-weight:500;letter-spacing:var(--ls-label);color:var(--d-3);margin:.55em 0 0 var(--s-3);opacity:0;transform:translateX(-8px);transition:opacity .5s,transform .7s var(--ease)}
+.val-row.on .vn{opacity:1;transform:none}
+.val-frame{position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--graphite)}
+.val-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;clip-path:inset(100% 0 0 0)}
+.val-frame img:first-child{clip-path:inset(0 0 0 0)}
+.val-desc{max-width:440px;padding-top:var(--s-5);border-top:1px solid var(--line)}
+.val-desc p{font-size:var(--fs-lead);line-height:var(--lh-lead);color:var(--d-2);letter-spacing:-.01em}
+
+/* =========================================================
+   06 CONTACT — the address you choose fills the whole scene; the request card sits on it
+   ========================================================= */
+.cta{position:relative;overflow:hidden;background:var(--ink);color:var(--d-2);padding:var(--sec) 0 calc(var(--sec) * .8);min-height:100vh;min-height:100svh;display:flex;align-items:flex-end}
+.cta-bg{position:absolute;left:0;right:0;top:-8%;bottom:-8%}
+.cta-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity 1.3s var(--ease),transform 3.2s var(--ease)}
+.cta-bg img.on{opacity:1;transform:scale(1)}
+.cta-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(var(--shade),.94) 0%,rgba(var(--shade),.72) 44%,rgba(var(--shade),.3) 100%),linear-gradient(0deg,rgba(var(--shade),.75),rgba(var(--shade),0) 45%),linear-gradient(180deg,var(--ink-2) 0%,rgba(20,21,23,0) 22%)}
+.cta-in{position:relative;z-index:1;width:100%}
+.cta-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:end}
+.cta-l{grid-column:1/6;display:flex;flex-direction:column}
+.cta-h{font-size:var(--fs-h1);color:var(--d-1)}
+.cta-h .muted{color:var(--d-3)}
+.cta-l>p{margin-top:var(--s-5);max-width:400px;font-size:var(--fs-lead);line-height:var(--lh-lead);color:var(--d-2)}
+.reach{display:grid;grid-template-columns:auto 1fr 1fr;gap:var(--s-4) var(--s-6);align-items:end;margin-top:var(--s-8);padding-top:var(--s-5);border-top:1px solid var(--line)}
+.reach .lbl{display:block;color:var(--d-3);margin-bottom:var(--s-2)}
+.reach .hot{font-size:var(--fs-num-m);font-weight:300;letter-spacing:var(--ls-num);line-height:.9;color:var(--d-1)}
+.reach a:not(.hot),.reach p{font-size:var(--fs-body);color:var(--d-2)}
+.reach a:not(.hot){border-bottom:1px solid var(--line-2)}
+.cta-card{grid-column:7/13;background:var(--paper);color:var(--l-1);padding:clamp(24px,2.5vw,40px);box-shadow:0 50px 90px -40px rgba(0,0,0,.75)}
+.cta-card-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:var(--s-3);color:var(--l-3)}
+.cta-card-top b{font-size:var(--fs-h4);font-weight:700;letter-spacing:var(--ls-head);color:var(--l-1);text-transform:none}
+/* the form reads like a specification sheet: numbered rows, label above the answer */
+.slip{border-bottom:1px solid var(--line-d)}
+.row{position:relative;display:grid;grid-template-columns:30px minmax(0,1fr);align-items:center;row-gap:var(--s-2);padding:var(--s-3) 0;border-top:1px solid var(--line-d)}
+.row input,.row .pills{grid-column:2}
+.row::before{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:var(--l-1);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease)}
+.row:focus-within::before{transform:scaleX(1)}
+.row .n{font-size:var(--fs-label);letter-spacing:var(--ls-label);color:var(--l-3);font-variant-numeric:tabular-nums}
+.row .k{font-size:var(--fs-label);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--l-3);transition:color .4s}
+.row:focus-within .k{color:var(--l-1)}
+.row input{width:100%;padding:var(--s-1) 0;font-size:var(--fs-lead);letter-spacing:-.01em;color:var(--l-1);outline:none}
+.row input::placeholder{color:rgba(20,21,23,.3)}
+.row.err::before{background:var(--err);transform:scaleX(1)}
+.row.err .k,.row.err .n{color:var(--err)}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.pills input{position:absolute;opacity:0;pointer-events:none}
+.pills label{display:inline-flex;align-items:center;gap:var(--s-2);padding:var(--s-2) var(--s-4) var(--s-2) var(--s-3);border:1px solid var(--line-d2);border-radius:100px;font-size:var(--fs-small);font-weight:500;cursor:pointer;transition:background .45s,color .45s,border-color .45s}
+.pills label::before{content:"";width:7px;height:7px;border-radius:50%;border:1px solid currentColor;transition:background .3s}
+.pills label:hover{border-color:var(--l-1)}
+.pills input:checked+label{background:var(--l-1);color:var(--white);border-color:var(--l-1)}
+.pills input:checked+label::before{background:currentColor}
+.pills input:focus-visible+label{outline:2px solid var(--l-1);outline-offset:2px}
+.send-row{display:flex;align-items:center;gap:var(--s-5);margin-top:var(--s-5)}
+.send{position:relative;flex:none;white-space:nowrap;display:inline-flex;align-items:center;gap:var(--s-5);padding:var(--s-2) var(--s-2) var(--s-2) var(--s-6);border-radius:100px;background:var(--l-1);color:var(--white);font-size:var(--fs-btn);font-weight:700;letter-spacing:var(--ls-btn);text-transform:uppercase;overflow:hidden}
+.send::before{content:"";position:absolute;inset:0;background:var(--graphite);transform:translateX(-101%);transition:transform .7s var(--ease)}
+.send:hover::before{transform:none}
+.send>*{position:relative}
+.send i{width:48px;height:48px;border-radius:50%;background:var(--white);color:var(--l-1);display:grid;place-items:center}
+.send .arrow{width:16px;height:16px}
+.send:hover .arrow{transform:translateX(4px)}
+.send-note{max-width:240px;font-size:var(--fs-small);line-height:1.5;color:var(--l-3)}
+.ok{display:none;padding:var(--s-7) 0;border-top:1px solid var(--l-1)}
+.cta.sent .ok{display:block}
+.ok .lbl{display:block;color:var(--l-3);margin-bottom:var(--s-4)}
+.ok h3{font-size:var(--fs-h2);font-weight:700;letter-spacing:var(--ls-display);line-height:.95}
+.ok p{margin-top:var(--s-3);font-size:var(--fs-lead);color:var(--l-2)}
+
+/* =========================================================
+   FOOTER — revealed from beneath the page; the light finds the T
+   ========================================================= */
+.footer{position:relative;background:var(--ink);overflow:hidden}
+.foot-reveal main{position:relative;z-index:1;background:var(--ink)}
+.foot-reveal .footer{position:sticky;bottom:0;z-index:0}
+.marquee{border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:var(--s-4) 0}
+.mq-in{display:inline-flex;gap:var(--s-7);animation:mq 38s linear infinite;color:var(--d-3)}
+.mq-in span{display:inline-flex;align-items:center;gap:var(--s-7);font-size:var(--fs-small);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase}
+.mq-in span::after{content:"";width:22px;height:12px;background:var(--d-4);-webkit-mask:var(--T) center/contain no-repeat;mask:var(--T) center/contain no-repeat}
+@keyframes mq{to{transform:translateX(-50%)}}
+.f-top{display:grid;grid-template-columns:minmax(0,1.8fr) repeat(3,minmax(0,1fr));gap:var(--s-6);padding:var(--s-8) 0 var(--s-6)}
+.f-news h3{font-size:var(--fs-h3);font-weight:500;letter-spacing:var(--ls-snug);line-height:var(--lh-title);color:var(--d-1);margin:0 0 var(--s-5);max-width:480px}
+.news-box{position:relative;max-width:460px}
+.news{position:relative;display:flex;align-items:center;gap:var(--s-3);border-bottom:1px solid var(--line-2);padding-bottom:var(--s-2)}
+.news::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--white);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease)}
+.news:focus-within::after{transform:scaleX(1)}
+.news.err::after{background:var(--err-d);transform:scaleX(1)}
+.news input{flex:1;min-width:0;font-size:var(--fs-lead);color:var(--d-1);outline:none;padding:var(--s-2) 0}
+.news input::placeholder{color:var(--d-4)}
+.news button{flex:none;width:44px;height:44px;border-radius:50%;background:var(--mist);color:var(--ink);display:grid;place-items:center;transition:transform .6s var(--ease),background .4s}
+.news button:hover{transform:rotate(-45deg);background:var(--white)}
+.news-ok{position:absolute;left:0;top:0;font-size:var(--fs-lead);color:var(--d-1);opacity:0;visibility:hidden;padding-top:var(--s-3)}
+.f-col{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s-1)}
+.f-col .lbl{color:var(--d-3);margin-bottom:var(--s-3)}
+.f-col .f-hours{margin-top:var(--s-2);font-size:var(--fs-small);line-height:var(--lh-body);color:var(--d-3)}
+.f-col a,.f-col p{position:relative;color:var(--d-2);font-size:var(--fs-body);line-height:1.75}
+.f-col a::after{content:"";position:absolute;left:0;right:0;bottom:3px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .6s var(--ease)}
+.f-col a:hover::after{transform:scaleX(1);transform-origin:left}
+.f-col .f-soc{display:flex;gap:var(--s-4);margin-top:var(--s-4)}
+/* each letter carries its own light, so the beam stays true when the letters lift — nothing is clipped at the sides or the top */
+.fmark{position:relative;margin-top:var(--s-6);font-size:12vw;font-weight:700;letter-spacing:-.055em;line-height:.8;white-space:nowrap;user-select:none;padding:.1em 0 .04em;clip-path:inset(-40% -4% 0 -4%)}
+.fm-base .ch{padding:.12em .1em .06em;margin:-.12em -.1em -.06em;color:transparent;-webkit-background-clip:text;background-clip:text;background-color:var(--ghost);background-repeat:no-repeat}
+.foot-bot{display:flex;justify-content:space-between;align-items:center;gap:var(--s-5);padding:var(--s-5) 0;color:var(--d-3);font-size:var(--fs-small);border-top:1px solid var(--line)}
+.foot-bot .f-note{flex:1;max-width:440px;text-align:center;color:var(--d-4)}
+.to-top{display:inline-flex;align-items:center;gap:var(--s-3);font-size:var(--fs-btn);text-transform:uppercase;letter-spacing:var(--ls-btn);font-weight:700;color:var(--d-3);transition:color .4s}
+.to-top i{position:relative;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;overflow:hidden;color:var(--d-2);transition:background .5s var(--ease),border-color .4s,color .4s}
+.to-top i svg{width:16px;height:16px}
+.to-top:hover{color:var(--d-1)}
+.to-top:hover i{background:var(--mist);border-color:var(--mist);color:var(--ink)}
+.to-top:hover i svg{animation:up .8s var(--ease)}
+@keyframes up{0%{transform:none}40%{transform:translateY(-34px)}41%{transform:translateY(34px)}100%{transform:none}}
+
+/* cursor */
+.cur,.cur-ring{position:fixed;left:0;top:0;z-index:300;pointer-events:none;border-radius:50%;mix-blend-mode:difference}
+.cur{width:6px;height:6px;background:#fff;margin:-3px 0 0 -3px}
+.cur-ring{width:36px;height:36px;margin:-18px 0 0 -18px;border:1px solid rgba(255,255,255,.6);transition:width .45s var(--ease),height .45s var(--ease),margin .45s var(--ease)}
+.cur-ring.big{width:64px;height:64px;margin:-32px 0 0 -32px}
+@media (pointer:coarse){.cur,.cur-ring{display:none}}
+
+/* =========================================================
+   RESPONSIVE — the same tokens; only the layout changes
+   ========================================================= */
+@media (max-width:1360px){.hotline .t{display:none}}
+@media (max-width:1180px){.nav{display:none}.burger{display:block}}
+@media (max-width:900px){
+  :root{--hdr:76px}
+  .hero-side{display:none}
+  .hero-bottom{grid-template-columns:1fr;gap:var(--s-4)}
+  .cue,.hb-l p{display:none}
+  .launch{justify-self:stretch;width:100%}
+  .mf{grid-template-columns:1fr;gap:var(--s-4);bottom:10vh}
+  .mf-count{flex-direction:row;align-items:baseline}
+  .mf-lines{height:34vw}
+  .hs-body{grid-template-columns:1fr;grid-template-rows:auto 1fr;row-gap:var(--s-5)}
+  .hs-r{grid-column:1;grid-row:1}
+  .hs-l{grid-column:1;grid-row:2;justify-content:flex-start}
+  .hs-lead{display:none}
+  .hs-frame{flex:none;height:32vh}
+  .hs-cap{display:none}
+  .odo{font-size:var(--fs-num-l)}
+  .hs-eras{margin-top:var(--s-3)}
+  .rec-l,.rec-list{grid-column:1/-1}
+  .rec-l{position:static;margin-bottom:var(--s-7)}
+  .rec-row{grid-template-columns:36px minmax(0,1fr) 64px;row-gap:var(--s-3)}
+  .tks{grid-column:2;grid-row:2}
+  .rec-row .num{grid-row:1/3;grid-column:3}
+  .m-bot{grid-template-columns:1fr;row-gap:var(--s-5)}
+  .m-panel{width:100%;padding:var(--s-3) var(--s-4) var(--s-4)}
+  .m-panel-t{display:none}
+  .m-scenes{display:flex;gap:var(--s-2)}
+  .m-scenes li{flex:1}
+  .m-scenes button{flex-direction:column;gap:var(--s-1);padding:var(--s-2) 0;font-size:var(--fs-label);letter-spacing:.1em}
+  .m-scenes button.on{padding-left:0}
+  .dn{margin-top:var(--s-3)}
+  .pj-head{grid-template-columns:1fr;row-gap:var(--s-5);padding-top:calc(var(--sec) * .8);padding-bottom:var(--s-6)}
+  .pj-head h2,.pj-head p{grid-column:1}
+  .pj-row{flex-direction:column;gap:var(--s-2)}
+  .pj-p img{left:0;top:50%;width:100%;height:var(--os,100%);transform:translateY(-50%) scale(1.06)}
+  .pj-p.on img{transform:translateY(-50%) scale(1)}
+  .pj-closed{flex-direction:row;justify-content:flex-start;align-items:center;gap:var(--s-3);padding:0 var(--s-4)}
+  .pj-closed h3{writing-mode:horizontal-tb;transform:none;font-size:var(--fs-lead)}
+  .pj-open{padding:var(--s-4)}
+  .pj-you:not(.on) .pj-draw{opacity:0}
+  .pj-you.on .pj-draw{right:var(--s-4);top:calc(var(--s-7) + var(--s-1));width:min(58%,210px)}
+  .pj-p::after{background:linear-gradient(0deg,rgba(var(--shade),.94) 0%,rgba(var(--shade),.78) 52%,rgba(var(--shade),.25) 82%,rgba(var(--shade),.45) 100%)}   /* on a phone the words cover most of the picture */
+  .pj-name{font-size:var(--fs-h2)}
+  .pj-line{margin-top:var(--s-2);font-size:var(--fs-body)}
+  .pj-facts{margin-top:var(--s-3)}
+  .pj-facts div+div{padding-left:var(--s-3)}
+  .pj-acts{flex-wrap:nowrap;gap:var(--s-2);margin-top:var(--s-3)}
+  .pj-acts>*{flex:1 1 auto;justify-content:center;padding:0 var(--s-3);letter-spacing:.08em}
+  .pj-acts .pill-l i{display:none}
+  .near-head{grid-template-columns:1fr;row-gap:var(--s-5)}
+  .near-head h2,.near-lead{grid-column:1}
+  .near-list{margin-top:var(--s-7)}
+  .near-list li{grid-template-columns:28px minmax(0,1fr) auto;column-gap:var(--s-3)}
+  .near-list .nm{font-size:var(--fs-h4)}
+  .near-list b{font-size:var(--fs-num-s)}
+  .val-media{top:auto;left:0;width:100%;height:30vh}
+  .val-media::after{background:linear-gradient(180deg,rgba(20,21,23,.7),rgba(20,21,23,0) 30%),linear-gradient(0deg,rgba(var(--shade),.7),rgba(var(--shade),0) 40%)}
+  .val-content{padding-right:var(--pad);padding-bottom:calc(30vh + var(--s-4))}
+  .val-list{font-size:8.4vw;justify-content:flex-start;padding-top:var(--s-5)}
+  .vn{display:none}
+  .cta-l,.cta-card{grid-column:1/-1}
+  .cta-card{margin-top:var(--s-7)}
+  .reach{grid-template-columns:1fr 1fr}
+  .reach>div:first-child{grid-column:1/-1}
+  .send-row{flex-wrap:wrap}
+  .f-top{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--s-7)}
+  .f-news{grid-column:1/-1}
+  .proof{grid-template-columns:1fr 1fr;row-gap:var(--s-6);margin-bottom:var(--s-8)}
+  .m-facts{grid-template-columns:repeat(2,auto);gap:var(--s-3) var(--s-6);margin-bottom:var(--s-5)}
+  .foot-bot{flex-direction:column;align-items:flex-start}
+  .f-top .f-col:nth-child(3){grid-column:1/-1;order:3}   /* the email address needs the full width on a phone */
+  .f-top .f-col:nth-child(4){order:2}
+  .f-col .f-soc{flex-wrap:wrap;gap:var(--s-2) var(--s-4)}
+  .foot-bot .f-note{text-align:left}
+}
+@media (max-width:560px){
+  /* every full-screen section keeps the dock's height clear at its foot */
+  :root{--fab:56px;--pin-bot:calc(var(--s-4) + var(--fab) + var(--s-4))}
+  .enq{display:none}
+  .wa{right:var(--s-4);bottom:var(--s-4)}
+  .wa-tip{display:none}
+  .dock{position:fixed;left:var(--s-4);right:calc(var(--s-4) + var(--fab) + var(--s-2));bottom:var(--s-4);z-index:98;display:flex;gap:var(--s-1);padding:var(--s-1);border-radius:100px;background:rgba(var(--shade),.72);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);box-shadow:inset 0 0 0 1px rgba(255,255,255,.09),0 12px 40px -14px rgba(0,0,0,.6);transform:translateY(160%);visibility:hidden;transition:transform .8s var(--ease),visibility 0s .8s}
+  .dock.on{transform:none;visibility:visible;transition:transform .8s var(--ease),visibility 0s}
+  .dock-enq{flex:1;display:flex;align-items:center;justify-content:center;gap:var(--s-3);height:48px;border-radius:100px;background:var(--mist);color:var(--ink);font-size:var(--fs-btn);font-weight:700;letter-spacing:var(--ls-btn);text-transform:uppercase}
+  .menu-open .dock{transform:translateY(160%)}
+  .m-actions .pill{display:none}   /* the dock already carries Enquire */
+  .hero-bottom{bottom:var(--s-5)}
+  .hotline span.t{display:none}
+  .hotline{padding:var(--s-2) var(--s-3)}
+  .hb-l{display:none}
+  .ld-top span:last-child{display:none}
+  .ld-bot{flex-direction:column;align-items:stretch;gap:var(--s-5)}
+  .ld-quote{max-width:none}
+  .hs-ticks small{letter-spacing:.04em}   /* the years sit close on a phone ruler */
+  .m-lead{font-size:var(--fs-body);margin:var(--s-4) 0 var(--s-5)}
+  .dn button{padding:var(--s-2) var(--s-3)}
+  .launch{gap:var(--s-3)}
+  .launch-media{width:118px}
+  .launch-txt{flex:1}
+  .launch-dots{display:none}
+  .foot-bot{flex-direction:column;align-items:flex-start}
+  .f-top .f-col:nth-child(3){grid-column:1/-1;order:3}   /* the email address needs the full width on a phone */
+  .f-top .f-col:nth-child(4){order:2}
+  .f-col .f-soc{flex-wrap:wrap;gap:var(--s-2) var(--s-4)}
+}
+@media (prefers-reduced-motion:reduce){.grain,.hotline i,.cue-line svg,.launch-tag i,.mq-in,.pj-top .tag.live::before{animation:none}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="T" viewBox="0 0 200 104">
+      <path d="M0 0H200V38L174 16H26L0 38Z"/>
+      <path d="M83 16H117V70C117 92 130 98 160 98H164L166 104H34L36 98H40C70 98 83 92 83 70Z"/>
+    </symbol>
+    <symbol id="arr" viewBox="0 0 16 16"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="wa" viewBox="0 0 24 24"><path d="M3.6 20.4l1.3-4.1A8.4 8.4 0 1 1 8.1 19.3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.2 8.2c.3-.5.6-.5.9-.5h.6c.2 0 .4.1.5.4l.8 1.9c.1.2 0 .5-.1.6l-.6.7c-.1.2-.1.4 0 .5.6 1 1.4 1.8 2.5 2.4.2.1.4.1.5-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.3.3.6-.1.9-.8 1.7-1.7 1.8-.7.1-1.6 0-3-.6-2.2-1-3.7-3.2-3.8-3.4-.4-.5-1-1.6-1-2.7 0-.6.3-1.2.6-1.5z" fill="currentColor"/></symbol>
+    <linearGradient id="chrome" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#f4f6f9"/><stop offset=".28" stop-color="#8a929c"/><stop offset=".5" stop-color="#e6eaef"/><stop offset=".72" stop-color="#4b5058"/><stop offset="1" stop-color="#c8cdd4"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- PRELOADER -->
+<div class="loader" aria-hidden="true">
+  <div class="ld-shade"><div class="ld-grid"></div></div>
+  <div class="ld-glow"><svg viewBox="0 0 200 104" preserveAspectRatio="none"><path d="M0 0H200V38L174 16H117V70C117 92 130 98 160 98H164L166 104H34L36 98H40C70 98 83 92 83 70V16H26L0 38Z"/></svg></div>
+  <svg class="ld-t" viewBox="0 0 200 104" preserveAspectRatio="none">
+    <defs>
+      <pattern id="ldHatch" width="4.5" height="4.5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line class="hl" x1="0" y1="0" x2="0" y2="4.5"/></pattern>
+      <clipPath id="ldHatchClip"><rect class="hc" x="-5" y="104" width="210" height="0"/></clipPath>
+    </defs>
+    <!-- setting out: the T's own edges, run right across the sheet -->
+    <g class="ld-cons">
+      <line x1="-1600" y1="0" x2="1800" y2="0"/><line x1="-1600" y1="16" x2="1800" y2="16"/><line x1="-1600" y1="104" x2="1800" y2="104"/>
+      <line x1="83" y1="-1600" x2="83" y2="1700"/><line x1="117" y1="-1600" x2="117" y2="1700"/><line x1="0" y1="-1600" x2="0" y2="1700"/><line x1="200" y1="-1600" x2="200" y2="1700"/>
+    </g>
+    <!-- overall width -->
+    <g class="ld-dim ld-dim-w"><line x1="0" y1="-15" x2="200" y2="-15"/><line x1="0" y1="-20" x2="0" y2="-6"/><line x1="200" y1="-20" x2="200" y2="-6"/><line x1="-2.5" y1="-12.5" x2="2.5" y2="-17.5"/><line x1="197.5" y1="-12.5" x2="202.5" y2="-17.5"/><text x="100" y="-19" text-anchor="middle">200</text></g>
+    <!-- overall height -->
+    <g class="ld-dim ld-dim-h"><line x1="216" y1="0" x2="216" y2="104"/><line x1="206" y1="0" x2="221" y2="0"/><line x1="206" y1="104" x2="221" y2="104"/><line x1="213.5" y1="2.5" x2="218.5" y2="-2.5"/><line x1="213.5" y1="106.5" x2="218.5" y2="101.5"/><text x="224" y="54">104</text></g>
+    <!-- centre line -->
+    <line class="cl" x1="100" y1="-10" x2="100" y2="116"/>
+    <!-- section hatch, the solid T, and the outline (both halves drawn from the top centre) -->
+    <path class="hatch" d="M0 0H200V38L174 16H117V70C117 92 130 98 160 98H164L166 104H34L36 98H40C70 98 83 92 83 70V16H26L0 38Z" fill="url(#ldHatch)" clip-path="url(#ldHatchClip)"/>
+    <path class="fill" d="M0 0H200V38L174 16H117V70C117 92 130 98 160 98H164L166 104H34L36 98H40C70 98 83 92 83 70V16H26L0 38Z"/>
+    <path class="o" pathLength="1" d="M100 0H0V38L26 16H83V70C83 92 70 98 40 98H36L34 104H100"/>
+    <path class="o" pathLength="1" d="M100 0H200V38L174 16H117V70C117 92 130 98 160 98H164L166 104H100"/>
+    <!-- grips pop at each corner as the pen passes; the pens themselves are two points of light -->
+    <g class="ld-grips"></g>
+    <g class="ld-pen"><circle cx="100" cy="0" r="1"/><circle cx="100" cy="0" r="1"/></g>
+  </svg>
+  <span class="ld-corner tl"></span><span class="ld-corner tr"></span><span class="ld-corner bl"></span><span class="ld-corner br"></span>
+  <div class="ld-ui">
+    <div class="ld-top lbl"><span>T Developments</span><span>Est. 1995</span></div>
+    <div class="ld-bot">
+      <p class="ld-quote"><span>Every strong line</span> <b>needs another.</b></p>
+      <div class="ld-block"><span>Drawing</span><span>T — 001</span><span>Scale</span><span>1 : 1</span><span class="ld-bar"><i><b></b></i></span><span class="ld-num">000</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="cur" aria-hidden="true"></div><div class="cur-ring" aria-hidden="true"></div>
+
+<header class="hdr">
+  <a href="#top" class="logo" data-scroll aria-label="T Developments — home"><svg viewBox="0 0 200 104"><use href="#T"/></svg><span class="logo-txt">DEV<br>ELOP<br>MENTS</span></a>
+  <!-- the three ways to reach a T advisor stay on screen everywhere: WhatsApp, the hotline, and the request form -->
+  <div class="hdr-r">
+    <a class="hotline" href="tel:16702"><i></i><span class="t">Hotline&nbsp;</span>16702</a>
+    <a class="enq" href="#contact" data-scroll>Enquire</a>
+    <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </div>
+</header>
+
+<nav class="nav" aria-label="Primary">
+  <span class="nav-ind" aria-hidden="true"></span>
+  <a href="#montro" data-scroll>Montro</a>
+  <a href="#projects" data-scroll>Projects</a>
+  <a href="#about" data-scroll>Since 1995</a>
+  <a href="#values" data-scroll>Values</a>
+  <a href="#contact" data-scroll>Contact</a>
+  <span class="nav-prog" aria-hidden="true"><i></i></span>
+</nav>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <a href="#montro" data-scroll>Montro <sup>01</sup></a>
+  <a href="#projects" data-scroll>Projects <sup>02</sup></a>
+  <a href="#about" data-scroll>Since 1995 <sup>03</sup></a>
+  <a href="#values" data-scroll>Values <sup>04</sup></a>
+  <a href="#contact" data-scroll>Contact <sup>05</sup></a>
+  <div class="menu-foot lbl"><span>Follow The T.</span><a href="tel:16702">16702</a></div>
+</div>
+
+<!-- phones: Enquire rides along the bottom of the screen once the hero has passed -->
+<div class="dock" aria-label="Quick contact">
+  <a class="dock-enq" href="#contact" data-scroll>Enquire <svg class="arrow"><use href="#arr"/></svg></a>
+</div>
+<!-- WhatsApp: one icon pinned to the bottom-right corner, on every screen, once the hero has passed -->
+<a class="wa" href="https://wa.me/201148006052" target="_blank" rel="noopener" aria-label="WhatsApp a T advisor"><svg><use href="#wa"/></svg><span class="wa-tip">Chat with an advisor</span></a>
+
+<main id="top">
+
+<!-- ============ 01  FOLLOW THE T ============ -->
+<section class="stage" aria-label="Follow The T">
+  <div class="plate"><picture><source media="(max-aspect-ratio: 9/10)" srcset="assets/img/hero-hall-m.jpg"><img src="assets/img/hero-hall.jpg" alt=""></picture></div>
+  <div class="mem m1"><img src="assets/img/story-foundation.jpg" alt=""></div>
+  <div class="mem m2"><img src="assets/img/story-road.jpg" alt=""></div>
+  <div class="mem m3"><img src="assets/img/story-tree.jpg" alt=""></div>
+  <div class="mem m4"><img src="assets/img/story-bridge.jpg" alt=""></div>
+  <div class="dim"></div>
+  <div class="beam"></div>
+  <div class="plate-shade"></div>
+  <div class="hero-words" aria-hidden="true"><div class="hero-word l">FOLLOW</div><div class="hero-word r">THE T.</div></div>
+  <div class="t-layer"><canvas class="t-canvas"></canvas><svg class="t-fallback" viewBox="0 0 200 104"><use href="#T"/></svg></div>
+  <div class="ring"></div>
+  <div class="ui">
+    <h1 class="sr">T Developments — Follow The T.</h1>
+    <div class="hero-side l lbl"><span>Est. 1995</span><span class="q">Formerly Taj Developments</span></div>
+    <div class="hero-side r lbl"><span>Sheikh Zayed</span><span class="q">6th of October</span></div>
+    <div class="hero-bottom">
+      <div class="hb-l"><h3>Takes you higher.</h3><p>A family-built developer creating timeless communities in West Cairo — built by families, for families, since 1995.</p></div>
+      <div class="cue" aria-hidden="true"><span class="cue-line"><svg viewBox="0 0 200 104"><use href="#T"/></svg></span></div>
+      <a class="launch" href="#montro" data-scroll>
+        <span class="launch-media">
+          <img class="on" src="assets/img/montro-hotel-night.jpg" alt="Montro Residence at night"><img src="assets/img/montro-pool-night.jpg" alt=""><img src="assets/img/montro-interior-night.jpg" alt="">
+          <span class="launch-dots"><i><b></b></i><i><b></b></i><i><b></b></i></span>
+        </span>
+        <span class="launch-txt">
+          <span class="launch-tag"><i></i>New launch</span>
+          <span class="launch-name">Montro Residence</span>
+          <span class="launch-sub">Sheikh Zayed · with Swiss Inn</span>
+        </span>
+        <span class="launch-go"><svg class="arrow"><use href="#arr"/></svg></span>
+      </a>
+    </div>
+    <div class="mf">
+      <div class="mf-count lbl"><b><i><span>01</span><span>02</span><span>03</span><span>04</span></i></b>of four lines</div>
+      <div class="mf-lines">
+        <div class="mf-line"><p>Every foundation needs a <b>structure</b> to protect it.</p></div>
+        <div class="mf-line"><p>Every road needs a <b>guide</b> to lead the way.</p></div>
+        <div class="mf-line"><p>Every tree grows branches and leaves that give shade and <b>life</b>.</p></div>
+        <div class="mf-line"><p>And every strong <b>line</b> needs another to strengthen it.</p></div>
+      </div>
+    </div>
+    <div class="together"><small>Together, they form</small><h2>Something<br>greater.</h2></div>
+    <div class="formed"><small>They form</small><p>Because <b>transformation</b> is at the core of what we do.</p></div>
+  </div>
+</section>
+
+<!-- ============ 02  MONTRO — the new launch, straight after the hero ============ -->
+<section class="montro" id="montro">
+  <div class="m-intro"><div class="m-word" aria-hidden="true"><span>M</span><span>O</span><span>N</span><span>T</span><span>R</span><span>O</span></div><p class="m-sub">Residence by T Developments</p></div>
+  <div class="m-mask"><div class="m-scene"><img class="ms-a" src="assets/img/montro-hotel-night.jpg" alt="Montro Residence — hotel-serviced residence by T Developments"><img class="ms-b off" src="assets/img/montro-hotel-night.jpg" alt=""></div></div>
+  <div class="m-shade"></div><div class="sweep"></div>
+  <div class="m-content wrap">
+    <div class="m-bot">
+      <div class="m-main">
+        <h2 class="m-title">Montro<br>Residence</h2>
+        <p class="m-lead">The first hotel-serviced residence in the area — in partnership with Swiss Inn, minutes from Sphinx International Airport.</p>
+        <!-- DEMO FIGURES — placeholders for the visual proposal; replace with the client's launch data -->
+        <dl class="m-facts">
+          <div><dt>Status</dt><dd>Under construction</dd></div>
+          <div><dt>Handover</dt><dd>Q4 2029</dd></div>
+          <div><dt>Down payment</dt><dd>10%</dd></div>
+          <div><dt>Instalments</dt><dd>Up to 8 years</dd></div>
+        </dl>
+        <div class="m-actions"><button class="play" data-film><i></i>Watch the film</button><a class="pill" href="#contact" data-scroll>Enquire</a></div>
+      </div>
+      <div class="m-panel">
+        <span class="lbl m-panel-t">Explore the residence</span>
+        <ol class="m-scenes">
+          <li><button class="on" data-scene="hotel"><span>01</span>Hotel</button></li>
+          <li><button data-scene="pool"><span>02</span>Pool</button></li>
+          <li><button data-scene="garden"><span>03</span>Garden</button></li>
+          <li><button data-scene="interior"><span>04</span>Living</button></li>
+        </ol>
+      <div class="dn" role="group" aria-label="Day or night">
+        <button data-mode="day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Day</button>
+        <button data-mode="night" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>Night</button>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03  ADDRESSES — four panels stand side by side like four buildings on one street. As you scroll, each opens in turn
+     to show its address; the fourth is still a drawing: the visitor's own. ============ -->
+<section class="projects" id="projects">
+  <div class="wrap pj-head">
+    <h2 class="display">Three addresses.<br><span class="muted">One standard.</span></h2>
+    <p>Communities in West Cairo — each designed around privacy, green space and the way families live.</p>
+  </div>
+  <div class="pj-pin wrap">
+    <div class="pj-row">
+      <article class="pj-p on">
+        <img src="assets/img/montro-hotel-day.jpg" alt="Montro Residence, Sheikh Zayed">
+        <span class="pj-veil"></span>
+        <div class="pj-closed"><span class="n">01</span><h3>Montro Residence</h3></div>
+        <div class="pj-open">
+          <div class="pj-top"><span class="tag live">Now launching</span><span class="lbl">01 / Sheikh Zayed</span></div>
+          <div class="pj-bot">
+            <h3 class="pj-name">Montro Residence</h3>
+            <p class="pj-line">Hotel-serviced residences, run with Swiss Inn — minutes from Sphinx International Airport.</p>
+            <!-- DEMO FIGURES --><dl class="pj-facts"><div><dt>Type</dt><dd>Serviced apartments</dd></div><div><dt>Bedrooms</dt><dd>1–3</dd></div><div><dt>Handover</dt><dd>Q4 2029</dd></div></dl>
+            <div class="pj-acts"><a class="pill-l" href="#montro" data-scroll><span>Discover</span><i><svg class="arrow"><use href="#arr"/></svg></i></a><a class="pill" href="#contact" data-scroll data-pick="Montro Residence">Register interest</a></div>
+          </div>
+        </div>
+      </article>
+      <article class="pj-p">
+        <img src="assets/img/pavia-hero.webp" alt="Pavia compound with pool and landscaped walks">
+        <span class="pj-veil"></span>
+        <div class="pj-closed"><span class="n">02</span><h3>Pavia</h3></div>
+        <div class="pj-open">
+          <div class="pj-top"><span class="tag">Ready to move</span><span class="lbl">02 / Cairo–Alex Desert Road</span></div>
+          <div class="pj-bot">
+            <h3 class="pj-name">Pavia</h3>
+            <p class="pj-line">A private compound of clubhouse, sports and green walks — crafted around family life.</p>
+            <!-- DEMO FIGURES --><dl class="pj-facts"><div><dt>Type</dt><dd>Villas · townhouses</dd></div><div><dt>Bedrooms</dt><dd>3–5</dd></div><div><dt>Status</dt><dd>Ready to move</dd></div></dl>
+            <div class="pj-acts"><a class="pill-l" href="https://tajdevelopment.net/compound-pavia-sheikh-zayed/" target="_blank" rel="noopener"><span>Discover</span><i><svg class="arrow"><use href="#arr"/></svg></i></a><a class="pill" href="#contact" data-scroll data-pick="Pavia">Register interest</a></div>
+          </div>
+        </div>
+      </article>
+      <article class="pj-p">
+        <img src="assets/img/elite-west-hero.webp" alt="Elite West residential buildings" style="object-position:50% 42%">
+        <span class="pj-veil"></span>
+        <div class="pj-closed"><span class="n">03</span><h3>Elite West</h3></div>
+        <div class="pj-open">
+          <div class="pj-top"><span class="tag">Under construction</span><span class="lbl">03 / Sheikh Zayed</span></div>
+          <div class="pj-bot">
+            <h3 class="pj-name">Elite West</h3>
+            <p class="pj-line">Modern residential architecture set in lush, landscaped gardens.</p>
+            <!-- DEMO FIGURES --><dl class="pj-facts"><div><dt>Type</dt><dd>Apartments</dd></div><div><dt>Bedrooms</dt><dd>2–4</dd></div><div><dt>Handover</dt><dd>Q2 2027</dd></div></dl>
+            <div class="pj-acts"><a class="pill-l" href="https://tajdevelopment.net/elite-west/" target="_blank" rel="noopener"><span>Discover</span><i><svg class="arrow"><use href="#arr"/></svg></i></a><a class="pill" href="#contact" data-scroll data-pick="Elite West">Register interest</a></div>
+          </div>
+        </div>
+      </article>
+      <article class="pj-p pj-you">
+        <!-- the same sheet the T was drawn on at the start: this address is still a drawing -->
+        <div class="pj-plan" aria-hidden="true"><svg class="pj-draw" viewBox="-6 -24 236 140"><path class="pj-o" pathLength="1" d="M100 0H0V38L26 16H83V70C83 92 70 98 40 98H36L34 104H100"/><path class="pj-o" pathLength="1" d="M100 0H200V38L174 16H117V70C117 92 130 98 160 98H164L166 104H100"/><line class="pj-cl" x1="100" y1="-6" x2="100" y2="112"/><g class="pj-dim"><line x1="0" y1="-12" x2="200" y2="-12"/><line x1="0" y1="-17" x2="0" y2="-5"/><line x1="200" y1="-17" x2="200" y2="-5"/><text x="100" y="-16" text-anchor="middle">YOUR PLOT</text></g></svg></div>
+        <div class="pj-closed"><span class="n">04</span><h3>Your address</h3></div>
+        <div class="pj-open">
+          <div class="pj-top"><span class="tag">Next</span><span class="lbl">04 / West Cairo</span></div>
+          <div class="pj-bot">
+            <h3 class="pj-name">Your address<br>is next.</h3>
+            <p class="pj-line">Tell us how your family lives — a T advisor will show you where it fits.</p>
+            <div class="pj-acts"><a class="pill-l" href="#contact" data-scroll><span>Find your home</span><i><svg class="arrow"><use href="#arr"/></svg></i></a></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03b  WHAT'S AROUND — the places are the picture: each name stands large, and the line beneath it is the road,
+     drawn as far as the drive is long, with the T travelling it. DEMO FIGURES — approximate drive times; replace with the client's data ============ -->
+<section class="near" id="near">
+  <div class="near-bg" aria-hidden="true"><img src="assets/img/story-road.jpg" alt=""></div>
+  <div class="wrap">
+    <div class="near-head">
+      <h2 class="display">Minutes from<br><span class="muted">everything.</span></h2>
+      <p class="near-lead">Every T address sits on West Cairo’s main arteries — the airport, the malls and the city are a short drive away.</p>
+    </div>
+    <ol class="near-list">
+      <li data-min="3"><span class="n">01</span><span class="nm">Cairo–Alex Desert Road<small class="lbl">Highway</small></span><b><span>3</span><small>min</small></b><i class="near-road" aria-hidden="true"><i class="near-fill"></i><svg class="near-t"><use href="#T"/></svg></i></li>
+      <li data-min="10"><span class="n">02</span><span class="nm">Sphinx International Airport<small class="lbl">Airport</small></span><b><span>10</span><small>min</small></b><i class="near-road" aria-hidden="true"><i class="near-fill"></i><svg class="near-t"><use href="#T"/></svg></i></li>
+      <li data-min="12"><span class="n">03</span><span class="nm">Mall of Arabia<small class="lbl">Shopping</small></span><b><span>12</span><small>min</small></b><i class="near-road" aria-hidden="true"><i class="near-fill"></i><svg class="near-t"><use href="#T"/></svg></i></li>
+      <li data-min="15"><span class="n">04</span><span class="nm">Smart Village<small class="lbl">Business</small></span><b><span>15</span><small>min</small></b><i class="near-road" aria-hidden="true"><i class="near-fill"></i><svg class="near-t"><use href="#T"/></svg></i></li>
+      <li data-min="25"><span class="n">05</span><span class="nm">Grand Egyptian Museum<small class="lbl">Culture</small></span><b><span>25</span><small>min</small></b><i class="near-road" aria-hidden="true"><i class="near-fill"></i><svg class="near-t"><use href="#T"/></svg></i></li>
+      <li data-min="35"><span class="n">06</span><span class="nm">Downtown Cairo<small class="lbl">City</small></span><b><span>35</span><small>min</small></b><i class="near-road" aria-hidden="true"><i class="near-fill"></i><svg class="near-t"><use href="#T"/></svg></i></li>
+    </ol>
+    <p class="near-note">Approximate off-peak drive times from Sheikh Zayed.</p>
+  </div>
+</section>
+
+<!-- ============ 04  SINCE 1995 — statement, history, record ============ -->
+<section class="since" id="about">
+  <div class="wrap">
+    <p class="since-lead">T is more than a developer. It’s a <b>mindset</b> built on trust, transformation, and timeless value — shaping how people <b>live, connect, and grow.</b></p>
+  </div>
+</section>
+
+<section class="history" id="history">
+  <div class="hs-pin wrap">
+    <div class="hs-body">
+      <div class="hs-l">
+        <p class="hs-lead">One family, one line — five moments that shaped T.</p>
+        <div>
+          <div class="odo" aria-label="Year"><span class="d"><span class="d-in"><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i></span></span><span class="d"><span class="d-in"><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i></span></span><span class="d"><span class="d-in"><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i></span></span><span class="d"><span class="d-in"><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i></span></span></div>
+          <div class="hs-eras stack">
+            <div class="hs-era"><h3>A strategic entry into real estate.</h3><p>Land acquisition and trading — the first line, drawn with patience.</p></div>
+            <div class="hs-era"><h3>From land to full-scale development.</h3><p>A shift from land investment to building, construction and sales.</p></div>
+            <div class="hs-era"><h3>Growth across Sheikh Zayed and Obour.</h3><p>Projects delivered with consistency and commitment — through every market cycle.</p></div>
+            <div class="hs-era"><h3>A new chapter of integrated living.</h3><p>Taj Developments is established — experience-driven communities in West Cairo.</p></div>
+            <div class="hs-era"><h3>Taj has now become T.</h3><p>The same family, vision and standards — a new name, built for tomorrow.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="hs-r">
+        <div class="hs-frame">
+          <img src="assets/img/story-road.jpg" alt="An open desert road at dusk">
+          <img src="assets/img/story-foundation.jpg" alt="Steel columns rising from a concrete slab">
+          <img src="assets/img/era-aerial.jpg" alt="Aerial view of a completed community at night">
+          <img src="assets/img/pavia-hero.webp" alt="Pavia, Sheikh Zayed">
+          <img src="assets/img/montro-hotel-night.jpg" alt="Montro Residence at night">
+        </div>
+        <div class="hs-cap lbl"><span class="hs-capt">Fig. 1995 · Land</span><span>West Cairo</span></div>
+      </div>
+    </div>
+    <!-- an architect's scale: one tick per year, the T marks where we are -->
+    <div class="hs-ruler" aria-hidden="true"><span class="hs-base"></span><span class="hs-fill"></span><div class="hs-ticks"></div><span class="hs-cur"><svg viewBox="0 0 200 104"><use href="#T"/></svg></span></div>
+  </div>
+</section>
+
+<section class="records">
+  <div class="wrap">
+    <!-- proof of delivery — the label is read first, the figure shown large. DEMO FIGURES except "31 years" (1995–2026); replace with the client's data -->
+    <ul class="proof" aria-label="T Developments in numbers">
+      <li><span class="lbl">Years building in West Cairo</span><b><span data-count="31">31</span></b></li>
+      <li><span class="lbl">Homes handed over</span><b><span data-count="8600">8,600</span><sup>+</sup></b></li>
+      <li><span class="lbl">Families living at a T address</span><b><span data-count="12400">12,400</span><sup>+</sup></b></li>
+      <li><span class="lbl">Handed over on or before schedule</span><b><span data-count="94">94</span><sup>%</sup></b></li>
+    </ul>
+    <div class="rec">
+      <div class="rec-l">
+        <div class="rec-big"><span data-count="48">48</span><sup>+</sup></div>
+        <p>Projects across six destinations in West Cairo — delivered with consistency, through every market cycle.</p>
+        <span class="rec-key lbl"><svg viewBox="0 0 200 104"><use href="#T"/></svg>One mark, one project</span>
+      </div>
+      <ol class="rec-list">
+        <li class="rec-row"><span class="n">01</span><span class="dest">Kanarea Compound<small>Sheikh Zayed</small></span><span class="tks" data-n="20"></span><span class="num"><span data-count="20">20</span><sup>+</sup></span></li>
+        <li class="rec-row"><span class="n">02</span><span class="dest">Northern Expansion<small>6th of October</small></span><span class="tks" data-n="7"></span><span class="num"><span data-count="7">7</span><sup>+</sup></span></li>
+        <li class="rec-row"><span class="n">03</span><span class="dest">Beit Al Watan<small>6th of October</small></span><span class="tks" data-n="5"></span><span class="num"><span data-count="5">5</span><sup>+</sup></span></li>
+        <li class="rec-row"><span class="n">04</span><span class="dest">Supplementary Beit Al Watan<small>6th of October</small></span><span class="tks" data-n="7"></span><span class="num"><span data-count="7">7</span><sup>+</sup></span></li>
+        <li class="rec-row"><span class="n">05</span><span class="dest">Third Tourism District<small>6th of October</small></span><span class="tks" data-n="5"></span><span class="num"><span data-count="5">5</span></span></li>
+        <li class="rec-row"><span class="n">06</span><span class="dest">Second Tourism District<small>6th of October</small></span><span class="tks" data-n="4"></span><span class="num"><span data-count="4">4</span><sup>+</sup></span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05  SEVEN Ts ============ -->
+<section class="values" id="values">
+  <div class="val-pin">
+    <div class="val-media">
+      <div class="val-frame"><img src="assets/img/v-trust.jpg" alt="Handshake in a beam of light"><img src="assets/img/v-timeless.jpg" alt=""><img src="assets/img/v-thrive.jpg" alt=""><img src="assets/img/v-togetherness.jpg" alt=""><img src="assets/img/v-transformation.jpg" alt=""><img src="assets/img/v-transparency.jpg" alt=""><img src="assets/img/v-tomorrow.jpg" alt=""></div>
+      <div class="val-cap"><span class="lbl val-capt">T · Trust</span><b class="val-capn">01<small>/07</small></b></div>
+    </div>
+    <div class="val-content">
+      <ol class="val-list" aria-label="The seven Ts">
+        <li class="val-row on"><span class="vt">T</span><span class="vr"><span class="vr-base">rust</span><span class="vr-lit" aria-hidden="true">rust</span></span><span class="vn">01</span></li>
+        <li class="val-row"><span class="vt">T</span><span class="vr"><span class="vr-base">imeless</span><span class="vr-lit" aria-hidden="true">imeless</span></span><span class="vn">02</span></li>
+        <li class="val-row"><span class="vt">T</span><span class="vr"><span class="vr-base">hrive</span><span class="vr-lit" aria-hidden="true">hrive</span></span><span class="vn">03</span></li>
+        <li class="val-row"><span class="vt">T</span><span class="vr"><span class="vr-base">ogetherness</span><span class="vr-lit" aria-hidden="true">ogetherness</span></span><span class="vn">04</span></li>
+        <li class="val-row"><span class="vt">T</span><span class="vr"><span class="vr-base">ransformation</span><span class="vr-lit" aria-hidden="true">ransformation</span></span><span class="vn">05</span></li>
+        <li class="val-row"><span class="vt">T</span><span class="vr"><span class="vr-base">ransparency</span><span class="vr-lit" aria-hidden="true">ransparency</span></span><span class="vn">06</span></li>
+        <li class="val-row"><span class="vt">T</span><span class="vr"><span class="vr-base">omorrow</span><span class="vr-lit" aria-hidden="true">omorrow</span></span><span class="vn">07</span></li>
+      </ol>
+        <div class="val-desc stack">
+          <p>We build with honesty, integrity, and a commitment to delivering what we promise.</p>
+          <p>We create developments designed to last across generations.</p>
+          <p>We design environments where families and communities grow and prosper.</p>
+          <p>As a family business, we build spaces that bring families and communities closer together.</p>
+          <p>We transform land into meaningful places that elevate everyday living.</p>
+          <p>We believe in clear communication and trust with every client and partner.</p>
+          <p>We build with a forward vision, shaping spaces for future generations.</p>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06  CONTACT ============ -->
+<section class="cta" id="contact">
+  <div class="cta-bg" aria-hidden="true">
+    <img class="on" data-k="Montro Residence" src="assets/img/montro-dusk-pool.jpg" alt="">
+    <img data-k="Pavia" src="assets/img/pavia-hero.webp" alt="">
+    <img data-k="Elite West" src="assets/img/elite-west-hero.webp" alt="" style="object-position:50% 40%">
+    <img data-k="Not sure yet" src="assets/img/hero-hall.jpg" alt="">
+  </div>
+  <div class="wrap cta-in">
+    <div class="cta-grid">
+      <div class="cta-l">
+        <h2 class="display cta-h">Your chapter<br><span class="muted">starts here.</span></h2>
+        <p data-rise>Tell us where you see yourself — a T advisor will call you within one working day.</p>
+        <div class="reach">
+          <div><span class="lbl">Hotline</span><a class="hot" href="tel:16702">16702</a></div>
+          <div><span class="lbl">WhatsApp</span><a href="https://wa.me/201148006052" target="_blank" rel="noopener">+20 114 800 6052</a></div>
+          <div><span class="lbl">Head office</span><p>Cairo Business Park, Sheikh Zayed</p></div>
+        </div>
+      </div>
+      <div class="cta-card">
+        <div class="cta-card-top lbl"><b>Request a call</b><span>4 quick details</span></div>
+        <form class="slip" novalidate>
+          <div class="row"><span class="n">01</span><label class="k" for="f-name">Full name</label><input id="f-name" name="fullname" autocomplete="name" placeholder="Your name"></div>
+          <div class="row"><span class="n">02</span><label class="k" for="f-phone">Mobile</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="+20 1•• ••• ••••"></div>
+          <div class="row" role="radiogroup" aria-labelledby="k3"><span class="n">03</span><span class="k" id="k3">Interested in</span>
+            <div class="pills">
+              <input type="radio" name="project" id="p1" value="Montro Residence" checked><label for="p1">Montro Residence</label>
+              <input type="radio" name="project" id="p2" value="Pavia"><label for="p2">Pavia</label>
+              <input type="radio" name="project" id="p3" value="Elite West"><label for="p3">Elite West</label>
+              <input type="radio" name="project" id="p4" value="Not sure yet"><label for="p4">Not sure yet</label>
+            </div>
+          </div>
+          <div class="row" role="radiogroup" aria-labelledby="k4"><span class="n">04</span><span class="k" id="k4">Best time</span>
+            <div class="pills">
+              <input type="radio" name="time" id="t1" value="morning" checked><label for="t1">Morning</label>
+              <input type="radio" name="time" id="t2" value="afternoon"><label for="t2">Afternoon</label>
+              <input type="radio" name="time" id="t3" value="evening"><label for="t3">Evening</label>
+            </div>
+          </div>
+          <div class="send-row">
+            <button class="send" type="submit"><span>Send request</span><i><svg class="arrow"><use href="#arr"/></svg></i></button>
+            <p class="send-note">By sending, you agree to be contacted by a T advisor about your enquiry.</p>
+          </div>
+        </form>
+        <div class="ok" aria-live="polite"><span class="lbl">Request received</span><h3>Thank you, <span class="ok-n">friend</span>.</h3><p class="ok-p">A T advisor will call you shortly.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="marquee" aria-hidden="true"><div class="mq-in"><span>Follow the T</span><span>Est. 1995</span><span>Sheikh Zayed</span><span>6th of October</span><span>Hotline 16702</span><span>Follow the T</span><span>Est. 1995</span><span>Sheikh Zayed</span><span>6th of October</span><span>Hotline 16702</span></div></div>
+  <div class="wrap">
+    <div class="f-top">
+      <div class="f-news">
+        <h3>Be the first to hear about new addresses.</h3>
+        <div class="news-box">
+          <form class="news" novalidate><input type="email" name="email" autocomplete="email" placeholder="Your email address" aria-label="Email address"><button type="submit" aria-label="Subscribe"><svg class="arrow"><use href="#arr"/></svg></button></form>
+          <p class="news-ok">Thank you — you’re on the list.</p>
+        </div>
+      </div>
+      <nav class="f-col" aria-label="Footer"><span class="lbl">Explore</span><a href="#montro" data-scroll>Montro Residence</a><a href="#projects" data-scroll>Projects</a><a href="#about" data-scroll>Since 1995</a><a href="#values" data-scroll>Values</a><a href="#contact" data-scroll>Contact</a></nav>
+      <div class="f-col"><span class="lbl">Contact</span><a href="tel:16702">Hotline 16702</a><a href="mailto:info@tajdevelopments.net">info@tajdevelopments.net</a><a href="https://wa.me/201148006052" target="_blank" rel="noopener">WhatsApp</a></div>
+      <div class="f-col"><span class="lbl">Visit</span><p>Cairo Business Park,<br>Sheikh Zayed City, Giza</p><p class="f-hours">Sales office · Sat–Thu, 10 am–7 pm</p><!-- DEMO hours --><div class="f-soc"><a href="https://www.instagram.com/tajrealestateegypt" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/taj.development.eg" target="_blank" rel="noopener">Facebook</a><a href="https://www.youtube.com/@tajdevelopment2023" target="_blank" rel="noopener">YouTube</a></div></div>
+    </div>
+    <div class="fmark" aria-label="Follow The T."><div class="fm-base">FOLLOW THE T.</div></div>
+    <div class="foot-bot"><span>© 2026 T Developments · Formerly Taj Developments · Est. 1995</span><span class="f-note">Images are artist’s impressions. Designs, finishes and figures may change before handover.</span><a class="to-top" href="#top" data-scroll><span>Back to the top</span><i><svg viewBox="0 0 16 16"><path d="M8 14V2M3 7l5-5 5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></i></a></div>
+  </div>
+</footer>
+<div class="film" aria-hidden="true"><button class="film-x">Close ✕</button><video controls playsinline preload="none" data-src="https://tajdevelopment.net/wp-content/uploads/2026/05/Montro-1-1.mp4"></video></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+<script>
+/* Shared state for the 3D object (read every frame by the WebGL module).
+   seq: 0 = the T, 1–4 = the four words, 5 = the T again (the turns happen between whole numbers). */
+window.TState = { x:0, y:0, scale:1, rotX:0, rotY:0, rotZ:0, light:0, flash:0, seq:0 };
+
+(() => {
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const root = document.documentElement;
+  const portrait = () => window.innerWidth / window.innerHeight < .9;
+  const fine = window.matchMedia('(pointer:fine)').matches;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+  // a reload always starts at the top: the preloader and the hero are the way in, never the middle of a pinned story
+  // (set in <head> before ScrollTrigger records it, and confirmed here, or ScrollTrigger would put "auto" back)
+  ScrollTrigger.clearScrollMemory('manual');
+  window.scrollTo(0, 0);
+
+  /* ---------- smooth scroll ---------- */
+  let lenis = null;
+  if (!reduce && window.Lenis) {
+    lenis = new Lenis({ lerp: .085, smoothWheel: true, wheelMultiplier: .95 });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+    lenis.stop();
+  }
+  let stageEnd = 0;
+
+  const scrollTo = (target, offset = 0) => {
+    const el = typeof target === 'string' ? $(target) : target;
+    if (!el) return;
+    const st = ScrollTrigger.getAll().find(s => s.trigger === el && s.pin);
+    const y = el === document.body ? 0 : (st ? st.start : el.getBoundingClientRect().top + window.scrollY) + offset;
+    lenis ? lenis.scrollTo(y, { duration: 1.6 }) : window.scrollTo({ top: y, behavior: 'smooth' });
+  };
+  $$('[data-scroll]').forEach(a => a.addEventListener('click', e => {
+    const h = a.getAttribute('href'); if (!h || !h.startsWith('#')) return;
+    e.preventDefault(); if (root.classList.contains('menu-open')) setMenu(false); scrollTo(h === '#top' ? document.body : h);
+  }));
+  // the mobile menu: hidden from screen readers and the keyboard until it is open; the page holds still behind it
+  const menu = $('.menu'), burger = $('.burger');
+  function setMenu(open) {
+    root.classList.toggle('menu-open', open);
+    menu.setAttribute('aria-hidden', String(!open)); menu.inert = !open;
+    burger.setAttribute('aria-expanded', String(open));
+    if (lenis) open ? lenis.stop() : lenis.start();
+  }
+  menu.inert = true;
+  burger.addEventListener('click', () => setMenu(!root.classList.contains('menu-open')));
+  window.addEventListener('keydown', e => { if (e.key === 'Escape' && root.classList.contains('menu-open')) setMenu(false); });
+
+  /* ---------- text splitting ---------- */
+  function splitWords(el) {
+    const walk = node => [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(p => {
+          if (!p) return;
+          if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(' ')); return; }
+          const w = document.createElement('span'); w.className = 'w';
+          const i = document.createElement('span'); i.className = 'wi'; i.textContent = p;
+          w.appendChild(i); frag.appendChild(w);
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1 && n.tagName !== 'BR' && !n.classList.contains('w')) walk(n);
+    });
+    walk(el); return $$('.wi', el);
+  }
+  function splitChars(el) {
+    const txt = el.textContent; el.textContent = '';
+    return [...txt].map(c => { const s = document.createElement('span'); s.className = 'ch'; s.innerHTML = c === ' ' ? '&nbsp;' : c; el.appendChild(s); return s; });
+  }
+  const measure = (text, font, ls) => { const m = document.createElement('span'); m.style.cssText = `position:absolute;left:-9999px;top:0;white-space:nowrap;font:${font};letter-spacing:${ls}`; m.textContent = text; document.body.appendChild(m); const w = m.getBoundingClientRect().width; m.remove(); return w; };
+
+  /* ---------- hero composition: the T is centred; FOLLOW hangs from its top edge, THE T. stands on its base ---------- */
+  function layoutHero() {
+    const L = $('.hero-word.l'), R = $('.hero-word.r');
+    const W = window.innerWidth, H = window.innerHeight, pad = parseFloat(getComputedStyle(L).left);
+    L.style.fontSize = R.style.fontSize = '100px';
+    const wl = L.getBoundingClientRect().width, wr = R.getBoundingClientRect().width;
+    L.style.fontSize = R.style.fontSize = '';
+    const cv = document.createElement('canvas').getContext('2d'); cv.font = '700 100px Satoshi';
+    const m = cv.measureText('FOLLOW');
+    const fA = m.fontBoundingBoxAscent || 96, fD = m.fontBoundingBoxDescent || 24, cap = m.actualBoundingBoxAscent || 70;
+    const base = fs => (fs - (fA + fD) * fs / 100) / 2 + fA * fs / 100;
+    const tw = W * (portrait() ? .66 : .31), th = tw * .52, tTop = H / 2 - th / 2, tBot = H / 2 + th / 2;
+    let fsL, fsR, topL, topR;
+    if (!portrait()) {
+      const inner = tw * .30;
+      fsL = 100 * (W / 2 - inner - pad) / wl;
+      fsR = 100 * (W / 2 - inner - pad) / wr;
+      topL = tTop - (base(fsL) - cap * fsL / 100);
+      topR = tBot - base(fsR);
+    } else {
+      fsL = fsR = Math.min(100 * (W - pad * 2) / wl, 100 * (W - pad * 2) / wr);
+      topL = tTop - W * .05 - base(fsL);
+      topR = tBot + W * .05 - (base(fsR) - cap * fsR / 100);
+    }
+    root.style.setProperty('--hl-fs', fsL + 'px'); root.style.setProperty('--hr-fs', fsR + 'px');
+    root.style.setProperty('--hl-top', topL + 'px'); root.style.setProperty('--hr-top', topR + 'px');
+  }
+  /* the footer's name fills the full width, exactly */
+  function layoutFoot() {
+    const mk = $('.fmark'), cs = $$('.fm-base .ch');
+    mk.style.fontSize = '100px';
+    const w = cs.length ? cs[cs.length - 1].getBoundingClientRect().right - cs[0].getBoundingClientRect().left : measure('FOLLOW THE T.', '700 100px Satoshi,system-ui,sans-serif', '-.055em');
+    mk.style.fontSize = (100 * mk.clientWidth / w * .985) + 'px';
+    document.body.classList.toggle('foot-reveal', window.innerWidth > 900 && $('.footer').offsetHeight < window.innerHeight - 40);
+  }
+  let rz = 0; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { layoutHero(); layoutFoot(); ScrollTrigger.refresh(); }, 150); });
+
+  /* ---------- cursor + gentle plate parallax ---------- */
+  if (fine) {
+    const cur = $('.cur'), ring = $('.cur-ring');
+    const xC = gsap.quickTo(cur, 'x', { duration: .12 }), yC = gsap.quickTo(cur, 'y', { duration: .12 });
+    const xR = gsap.quickTo(ring, 'x', { duration: .45, ease: 'power3' }), yR = gsap.quickTo(ring, 'y', { duration: .45, ease: 'power3' });
+    const pX = gsap.quickTo('.plate', 'x', { duration: 1.6, ease: 'power3' }), pY = gsap.quickTo('.plate', 'y', { duration: 1.6, ease: 'power3' });
+    window.addEventListener('pointermove', e => { xC(e.clientX); yC(e.clientY); xR(e.clientX); yR(e.clientY); pX((e.clientX / window.innerWidth - .5) * -14); pY((e.clientY / window.innerHeight - .5) * -10); });
+    $$('a, button, label, input, .val-row').forEach(el => { el.addEventListener('mouseenter', () => ring.classList.add('big')); el.addEventListener('mouseleave', () => ring.classList.remove('big')); });
+  }
+
+  /* =========================================================
+     PRELOADER — a line, then another line from its centre; then the T is traced around them
+     ========================================================= */
+  // only the hall itself must be ready; everything else loads while the visitor reads
+  const loadImgs = $$('.plate img').map(img => img.complete ? Promise.resolve() : new Promise(r => { img.addEventListener('load', r, { once: true }); img.addEventListener('error', r, { once: true }); }));
+  const fontsReady = Promise.race([document.fonts ? document.fonts.ready : Promise.resolve(), new Promise(r => setTimeout(r, 1200))]);
+  const assetsReady = Promise.race([Promise.all(loadImgs), new Promise(r => setTimeout(r, 4000))]);
+  if (document.fonts) document.fonts.ready.then(() => { layoutFoot(); });
+  const heroL = splitChars($('.hero-word.l')), heroR = splitChars($('.hero-word.r'));
+  gsap.set([...heroL, ...heroR], { yPercent: 105 });
+  gsap.set(['.hero-side', '.hero-bottom > *', '.hdr', '.nav'], { autoAlpha: 0 });
+
+  // the 3D T announces itself once it is built, lit and compiled. The drawing starts only then (or after 3s at most),
+  // so no heavy WebGL work ever lands in the middle of the animation — that was what made it stutter.
+  const tReady = new Promise(r => { if (window.TReady) r(); else window.addEventListener('tready', r, { once: true }); });
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+
+  Promise.all([fontsReady, Promise.race([tReady, wait(3000)])]).then(() => {
+    layoutHero(); layoutFoot(); ScrollTrigger.refresh();
+    const prog = { v: 0 }, num = $('.ld-num'), pbar = $('.ld-bar b'), q1 = $('.ld-quote span'), q2 = $('.ld-quote b');
+    const show = () => { num.textContent = String(Math.round(prog.v)).padStart(3, '0'); pbar.style.transform = `scaleX(${prog.v / 100})`; };
+    // hairlines stay one screen pixel thick at any size
+    // (if the page is laid out at zero width — a hidden tab — fall back to the size the T will have)
+    const unit = 200 / ($('.ld-t').getBoundingClientRect().width || window.innerWidth * (portrait() ? .66 : .31) || 400), NS = 'http://www.w3.org/2000/svg';
+    const paths = $$('.ld-t .o'), pens = $$('.ld-pen circle'), cons = $$('.ld-cons line');
+    paths.forEach(p => p.setAttribute('stroke-width', 1.3 * unit));
+    $$('.ld-t .ld-dim line, .ld-t .cl').forEach(l => l.setAttribute('stroke-width', .9 * unit));
+    cons.forEach(l => l.setAttribute('stroke-width', .8 * unit));
+    $('.ld-t .hl').setAttribute('stroke-width', .7 * unit);
+    pens.forEach(c => c.setAttribute('r', 2.2 * unit));
+    // a grip at every corner of the outline; each knows how far along its half of the line it sits
+    const grips = [[0, 0], [0, 38], [26, 16], [83, 16], [34, 104], [200, 0], [200, 38], [174, 16], [117, 16], [166, 104]].map(([x, y]) => {
+      const p = paths[x < 100 ? 0 : 1], L = p.getTotalLength(); let at = 0, bd = 1e9;
+      for (let i = 0; i <= 400; i++) { const q = p.getPointAtLength(L * i / 400), d = (q.x - x) ** 2 + (q.y - y) ** 2; if (d < bd) { bd = d; at = i / 400; } }
+      const r = document.createElementNS(NS, 'rect'), s = 5 * unit;
+      r.setAttribute('x', x - s / 2); r.setAttribute('y', y - s / 2); r.setAttribute('width', s); r.setAttribute('height', s); r.setAttribute('stroke-width', unit);
+      $('.ld-grips').appendChild(r); return { r, at, on: false };
+    });
+    gsap.set(cons.slice(0, 3), { scaleX: 0, svgOrigin: '100 52' });
+    gsap.set(cons.slice(3), { scaleY: 0, svgOrigin: '100 52' });
+    gsap.set('.ld-dim-w', { scaleX: 0, transformOrigin: '50% 50%' });
+    gsap.set('.ld-dim-h', { scaleY: 0, transformOrigin: '50% 0%' });
+    gsap.set('.ld-t .cl', { scaleY: 0, transformOrigin: '50% 0%' });
+    gsap.set('.ld-t .ld-dim text', { opacity: 0 });
+    gsap.set('.ld-corner', { scale: 0 });
+    // the pen: one value drives both halves of the outline, the two points of light, and the grips they pass
+    const pen = { f: 0 };
+    const drawTo = () => {
+      paths.forEach((p, k) => { p.style.strokeDashoffset = 1 - pen.f; const q = p.getPointAtLength(p.getTotalLength() * pen.f); pens[k].setAttribute('cx', q.x); pens[k].setAttribute('cy', q.y); });
+      grips.forEach(g => { if (!g.on && pen.f >= g.at) { g.on = true; gsap.fromTo(g.r, { opacity: 0, scale: 2.4 }, { opacity: 1, scale: 1, duration: .55, ease: 'expo.out', transformOrigin: '50% 50%' }); } });
+    };
+    const R = Math.hypot(window.innerWidth, window.innerHeight) / 2 + 8, F = Math.max(window.innerWidth, window.innerHeight) * .42;
+    // one continuous timeline: every phase overlaps the next, nothing snaps on or off
+    const tl = gsap.timeline();
+    // 1 — the sheet: grid, crop marks, title block
+    tl.to('.ld-grid', { opacity: 1, duration: 1.2, ease: 'power1.out' }, 0)
+      .to('.ld-corner', { scale: 1, duration: 1.1, stagger: .05, ease: 'expo.out' }, 0)
+      .to('.ld-block', { opacity: 1, duration: .9, ease: 'power1.out' }, .1)
+      .to(prog, { v: 100, duration: 2.45, ease: 'power1.inOut', onUpdate: show }, .1)
+      // 2 — setting out: the T's own edges run out across the whole sheet, then its overall sizes and centre line
+      .to(cons, { scaleX: 1, scaleY: 1, duration: 1.3, stagger: .06, ease: 'expo.out' }, .05)
+      .to('.ld-dim-w', { scaleX: 1, duration: 1.1, ease: 'expo.inOut' }, .3)
+      .to('.ld-dim-h', { scaleY: 1, duration: 1.1, ease: 'expo.inOut' }, .42)
+      .to('.ld-t .cl', { scaleY: 1, duration: 1.2, ease: 'expo.inOut' }, .45)
+      .to('.ld-t .ld-dim text', { opacity: 1, duration: .7, stagger: .12, ease: 'power1.out' }, 1)
+      // 3 — the T is traced: two pens leave the top centre and meet at the foot, gripping each corner they pass
+      .to(pens, { opacity: 1, duration: .25, ease: 'power1.out' }, .5)
+      .to(pen, { f: 1, duration: 1.75, ease: 'power3.inOut', onUpdate: drawTo }, .5)
+      .to(pens, { opacity: 0, duration: .35, ease: 'power1.in' }, 2.15)
+      .to(q1, { opacity: 1, duration: .8, ease: 'power1.out' }, .55)
+      .to(q2, { opacity: 1, duration: .8, ease: 'power1.out' }, 1.35)
+      // 4 — and hatched, like a section cut through solid material
+      .to('.ld-t .hc', { attr: { y: -2, height: 108 }, duration: 1, ease: 'power2.inOut' }, 1.6)
+      // (only if the hall photograph is still on its way does the drawing rest here for a moment)
+      .addPause(2.65, () => assetsReady.then(() => tl.resume()))
+      // 5 — the drawing turns to light: the setting-out lets go, the outline brightens, the T fills solid white and glows
+      .addLabel('ignite', 2.65)
+      .to(['.ld-t .ld-cons', '.ld-t .ld-dim', '.ld-t .cl', '.ld-t .ld-grips', '.ld-t .hatch'], { opacity: 0, duration: .5, ease: 'power1.out' }, 'ignite')
+      .to(['.ld-corner', '.ld-ui'], { opacity: 0, duration: .6, ease: 'power1.out' }, 'ignite')
+      .to(paths, { stroke: '#ffffff', duration: .4, ease: 'power1.out' }, 'ignite')
+      .to('.ld-t .fill', { opacity: 1, duration: .5, ease: 'power2.in' }, 'ignite+=.05')
+      .to('.ld-glow', { opacity: .85, duration: .6, ease: 'power2.in' }, 'ignite+=.1')
+      // 6 — that light opens the room: the dark sheet clears outward from the T, softly,
+      //     and the hall comes up behind it, settling as it arrives; the chrome T is lit at the same pace
+      .addLabel('open', 'ignite+=.5')
+      .to('.ld-shade', { '--r': R + 'px', '--f': F + 'px', duration: 2.2, ease: 'power2.inOut' }, 'open')
+      .fromTo('.plate', { opacity: 0 }, { opacity: 1, duration: 1.7, ease: 'power1.inOut' }, 'open')
+      .fromTo('.plate img', { scale: 1.12 }, { scale: 1, duration: 3, ease: 'power3.out' }, 'open')
+      .to(TState, { light: 1, duration: 1.9, ease: 'power2.inOut' }, 'open')
+      // 7 — and gives the T back: the white drawing fades and the chrome T stands exactly where it was drawn
+      .to(paths, { opacity: 0, duration: .8, ease: 'power1.inOut' }, 'open+=.35')
+      .to('.ld-t .fill', { opacity: 0, duration: 1.2, ease: 'power2.inOut' }, 'open+=.45')
+      .to('.ld-glow', { opacity: 0, scale: 1.3, duration: 1.5, ease: 'power2.out' }, 'open+=.4')
+      .add(heroIntro, 'open+=.6')
+      .add(() => $('.loader').remove(), 'open+=2.3');
+  });
+
+  // the hero arrives softly, while the sheet is still dissolving — no flicker, no cut
+  function heroIntro() {
+    root.classList.remove('is-loading');
+    gsap.timeline({ onComplete: () => { lenis && lenis.start(); ScrollTrigger.refresh(); window.dispatchEvent(new Event('heroready')); } })
+      .to('.beam', { opacity: .28, duration: 1.6, ease: 'power2.inOut' }, 0)
+      .to(heroL, { yPercent: 0, duration: 1.4, ease: 'expo.out', stagger: .04 }, .3)
+      .to(heroR, { yPercent: 0, duration: 1.4, ease: 'expo.out', stagger: .04 }, .45)
+      .to(TState, { flash: .7, duration: .14, ease: 'power1.out' }, 1.15).to(TState, { flash: 0, duration: 1.2, ease: 'power2.out' }, 1.29)
+      .to(['.hdr', '.nav'], { autoAlpha: 1, duration: 1.1, ease: 'power1.out' }, .7)
+      .fromTo('.hero-side', { autoAlpha: 0 }, { autoAlpha: 1, duration: 1.1, ease: 'power1.out' }, .8)
+      .fromTo('.hero-bottom > *', { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.2, ease: 'expo.out', stagger: .1 }, .85);
+  }
+
+  (() => {   // new launch: three views through the T, each with its own little progress line
+    const imgs = $$('.launch-media img'), dots = $$('.launch-dots b'); let i = 0;
+    const next = () => {
+      dots.forEach((d, k) => k !== i && gsap.set(d, { scaleX: k < i ? 1 : 0 }));
+      gsap.fromTo(dots[i], { scaleX: 0 }, { scaleX: 1, duration: 4, ease: 'none', onComplete: () => { imgs[i].classList.remove('on'); i = (i + 1) % imgs.length; imgs[i].classList.add('on'); next(); } });
+    };
+    next();
+  })();
+
+  /* ---------- helpers for pinned stories ---------- */
+  // snapping that needs only a small push: 18% of the way to the next point is enough to go there
+  const pushSnap = pts => (v, self) => {
+    const d = self && self.direction < 0 ? -1 : 1;
+    if (v <= pts[0]) return pts[0];
+    if (v >= pts[pts.length - 1]) return pts[pts.length - 1];
+    const i = pts.findIndex(p => p > v), a = pts[i - 1], b = pts[i], f = (v - a) / (b - a);
+    return d > 0 ? (f > .18 ? b : a) : (f < .82 ? a : b);
+  };
+  // discrete steps: every state is whole (no half-words), however fast the scroll.
+  // Every stepped section asks the same scroll for one step (STEP of a screen), so the page keeps one rhythm.
+  const STEP = .65;
+  function steps(trigger, n, onStep) {
+    let cur = 0;
+    return ScrollTrigger.create({ trigger, start: 'top top', end: () => '+=' + Math.round(window.innerHeight * STEP * (n - 1)), pin: true, anticipatePin: 1,
+      snap: { snapTo: pushSnap([...Array(n)].map((_, k) => k / (n - 1))), inertia: false, duration: { min: .3, max: .8 }, delay: .1, ease: 'power2.inOut' },
+      onUpdate: self => { const i = Math.min(n - 1, Math.max(0, Math.round(self.progress * (n - 1)))); if (i !== cur) { const p = cur; cur = i; onStep(i, p); } } });
+  }
+  const goStep = (st, i, n) => { const y = st.start + (st.end - st.start) * (i / (n - 1)); lenis ? lenis.scrollTo(y, { duration: 1.2 }) : window.scrollTo({ top: y, behavior: 'smooth' }); };
+  // one text block out, the next one in — and anything else in the group silenced at once
+  function swap(els, i, p, dir) {
+    els.forEach((el, k) => { if (k !== i && k !== p) { gsap.killTweensOf(el); gsap.set(el, { autoAlpha: 0, y: 0 }); } });
+    if (els[p] && p !== i) gsap.to(els[p], { autoAlpha: 0, y: -14 * dir, duration: .26, ease: 'power2.in', overwrite: true });
+    gsap.fromTo(els[i], { autoAlpha: 0, y: 22 * dir }, { autoAlpha: 1, y: 0, duration: .8, delay: .26, ease: 'expo.out', overwrite: true });
+  }
+  // a picture wipes in over the last one
+  function wipe(img, dir, z) {
+    gsap.killTweensOf(img); img.style.zIndex = z;
+    gsap.fromTo(img, { clipPath: dir > 0 ? 'inset(100% 0% 0% 0%)' : 'inset(0% 0% 100% 0%)', scale: 1.16 }, { clipPath: 'inset(0% 0% 0% 0%)', scale: 1, duration: 1.25, ease: 'expo.inOut' });
+  }
+
+  /* =========================================================
+     STAGE — the logo turns into the word of each line, then back into the T
+     ========================================================= */
+  const mfWords = $$('.mf-line p').map(p => splitWords(p)), togetherW = splitWords($('.together h2'));
+  gsap.set(mfWords.flat(), { yPercent: 110 });
+  gsap.set(togetherW, { yPercent: 140 });
+  gsap.set(['.together small', '.formed small', '.formed p'], { autoAlpha: 0 });
+  const countIn = $('.mf-count b i');
+  const logoTarget = () => { const r = $('.logo svg').getBoundingClientRect(), b = window.innerWidth * (portrait() ? .66 : .31); return { x: (r.left + r.width / 2) / window.innerWidth - .5, y: .5 - (r.top + r.height / 2) / window.innerHeight, s: r.width / b }; };
+
+  const stageLabels = [];
+  const stl = gsap.timeline({ defaults: { ease: 'none' },
+    scrollTrigger: { trigger: '.stage', start: 'top top', end: () => '+=' + Math.round(window.innerHeight * 6.2), scrub: 1, pin: true, anticipatePin: 1, invalidateOnRefresh: true,
+      snap: { snapTo: (v, self) => pushSnap(stageLabels.map(t => t / stl.duration()))(v, self), inertia: false, duration: { min: .4, max: 1.4 }, delay: .12, ease: 'power2.inOut' },
+      onRefresh: self => { stageEnd = self.end; },
+      onLeave: () => { const l = $('.logo'); l.classList.remove('receive'); void l.offsetWidth; l.classList.add('receive'); } } });
+
+  stl.fromTo(TState, { x: 0, y: 0, scale: 1, rotX: 0, rotY: 0, seq: 0 }, { x: 0, y: .03, scale: .62, rotX: .06, rotY: 0, seq: 0, duration: 1, ease: 'power2.inOut', immediateRender: false }, 0)
+     // explicit start values: scrolling back up always brings the hero's words and labels back (they were hidden by the preloader when this was built)
+     .fromTo('.hero-word.l', { xPercent: 0, autoAlpha: 1 }, { xPercent: -30, autoAlpha: 0, duration: .9, ease: 'power2.in', immediateRender: false }, 0)
+     .fromTo('.hero-word.r', { xPercent: 0, autoAlpha: 1 }, { xPercent: 30, autoAlpha: 0, duration: .9, ease: 'power2.in', immediateRender: false }, 0)
+     .fromTo(['.hero-bottom', '.hero-side'], { autoAlpha: 1, y: 0 }, { autoAlpha: 0, y: -30, duration: .5, immediateRender: false }, 0)
+     .to('.dim', { opacity: .45, duration: 1 }, 0)
+     .to('.mf-count', { opacity: 1, duration: .3 }, .8);
+
+  const B = 1.8;
+  stageLabels.push(0);
+  [0, 1, 2, 3].forEach(i => {
+    const t0 = 1 + i * B, mem = '.m' + (i + 1);
+    stl.to(TState, { seq: i + 1, duration: .75, ease: 'power2.inOut' }, t0)
+       .fromTo(TState, { rotY: -.42 }, { rotY: -.06, duration: B, immediateRender: false }, t0)   // rests turned ~12°, so the depth shows
+       .to(mem, { opacity: .5, duration: .6 }, t0)
+       .to(countIn, { yPercent: -25 * i, duration: .4, ease: 'power2.inOut' }, t0)
+       .fromTo(mfWords[i], { yPercent: 110 }, { yPercent: 0, duration: .5, stagger: .03, ease: 'power3.out', immediateRender: false }, t0 + .3)
+       .to(mfWords[i], { yPercent: -110, autoAlpha: 0, duration: .35, stagger: .012, ease: 'power2.in' }, t0 + B - .42)
+       .to(mem, { opacity: 0, duration: .6 }, t0 + B - .5);
+    stageLabels.push(t0 + 1.15);
+  });
+  const t5 = 1 + 4 * B;
+  // the four words turn back into the T as it rises — so the T itself stands over "Together, they form something greater"
+  stl.to('.mf-count', { opacity: 0, duration: .3 }, t5 - .2)
+     .to('.dim', { opacity: .7, duration: .6 }, t5)
+     .to(TState, { y: .3, scale: .4, rotY: 0, duration: .5, ease: 'power2.inOut' }, t5)
+     .to(TState, { seq: 5, duration: .6, ease: 'power2.inOut' }, t5)
+     .to('.together small', { autoAlpha: 1, duration: .3 }, t5 + .1)
+     .to(togetherW, { yPercent: 0, duration: .5, stagger: .07, ease: 'power3.out' }, t5 + .15)
+     .to(['.together small', ...togetherW], { autoAlpha: 0, y: -40, duration: .4, stagger: .02 }, t5 + 1.05)
+     .to(TState, { y: 0, scale: 1.05, duration: .6, ease: 'power3.inOut' }, t5 + 1.1)
+     .fromTo(TState, { flash: 0 }, { flash: 1, duration: .08, immediateRender: false }, t5 + 1.9)
+     .to(TState, { flash: 0, duration: .5 }, t5 + 1.98)
+     .fromTo('.ring', { scale: 0, opacity: .9 }, { scale: 3.2, opacity: 0, duration: .7, ease: 'power2.out', immediateRender: false }, t5 + 1.9)
+     .to('.beam', { opacity: .5, duration: .3 }, t5 + 1.9)
+     .to('.formed small', { autoAlpha: 1, duration: .3 }, t5 + 2)
+     .to('.formed p', { autoAlpha: 1, duration: .4 }, t5 + 2.2)
+     .fromTo(TState, { rotY: 0 }, { rotY: .3, duration: .8, immediateRender: false }, t5 + 2.1)
+     .to(['.formed small', '.formed p'], { autoAlpha: 0, duration: .3 }, t5 + 3)
+     .to(TState, { x: () => logoTarget().x, y: () => logoTarget().y, scale: () => logoTarget().s, rotY: 0, rotX: 0, duration: .9, ease: 'power3.inOut' }, t5 + 3.05)
+     .to('.beam', { opacity: 0, duration: .8 }, t5 + 3.05)
+     .to('.dim', { opacity: .35, duration: .8 }, t5 + 3.05)
+     .to('.t-layer', { autoAlpha: 0, duration: .15 }, t5 + 3.9)
+     .to({}, { duration: .15 });
+  stageLabels.push(t5 + .8, t5 + 2.6, stl.duration());
+
+  /* =========================================================
+     03 MONTRO
+     ========================================================= */
+  const mIn = ['.m-title', '.m-lead', '.m-facts', '.m-actions', '.m-panel'];
+  gsap.set('.m-mask', { '--ms': portrait() ? '62vw' : '26vw' });
+  gsap.set(mIn, { autoAlpha: 0, y: 40 });
+  gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: '.montro', start: 'top top', end: () => '+=' + Math.round(window.innerHeight * 2.2), scrub: 1, pin: true, anticipatePin: 1 } })
+    .to('.m-mask', { '--ms': '1100vw', duration: 2, ease: 'power3.in' }, 0)
+    .fromTo('.m-scene', { scale: 1.35 }, { scale: 1, duration: 2.2, ease: 'power2.out' }, 0)
+    .to($$('.m-word span'), { y: i => (i % 2 ? 60 : -60), autoAlpha: 0, duration: .8, stagger: .04 }, .15)
+    .to('.m-sub', { autoAlpha: 0, duration: .4 }, .05)
+    .to('.m-shade', { opacity: 1, duration: .6 }, 1.8)
+    .to(mIn, { autoAlpha: 1, y: 0, duration: .6, stagger: .1, ease: 'power2.out' }, 2.05)
+    .to({}, { duration: .4 });
+  const scene = { name: 'hotel', mode: 'night' }; let front = $('.ms-a'), back = $('.ms-b'), req = 0;
+  function setScene() {
+    const src = `assets/img/montro-${scene.name}-${scene.mode}.jpg`, id = ++req;
+    const swapImg = () => { if (id !== req) return; back.onload = null; back.classList.remove('off'); front.classList.add('off'); [front, back] = [back, front]; gsap.fromTo('.sweep', { left: '-45vw' }, { left: '105vw', duration: 1.4, ease: 'power2.inOut' }); };
+    if (front.getAttribute('src') !== src) { back.onload = swapImg; back.src = src; if (back.complete && back.naturalWidth) swapImg(); }
+    $$('.m-scenes button').forEach(b => b.classList.toggle('on', b.dataset.scene === scene.name));
+  }
+  $$('.dn button').forEach(b => b.addEventListener('click', () => { scene.mode = b.dataset.mode; $$('.dn button').forEach(x => x.classList.toggle('on', x === b)); setScene(); }));
+  $$('.m-scenes button').forEach(b => b.addEventListener('click', () => { scene.name = b.dataset.scene; setScene(); }));
+  const film = $('.film'), vid = $('video', film);
+  $('[data-film]').addEventListener('click', () => { if (!vid.src) vid.src = vid.dataset.src; film.classList.add('open'); film.setAttribute('aria-hidden', 'false'); lenis && lenis.stop(); vid.play().catch(() => {}); });
+  const closeFilm = () => { film.classList.remove('open'); film.setAttribute('aria-hidden', 'true'); vid.pause(); lenis && lenis.start(); };
+  $('.film-x').addEventListener('click', closeFilm);
+  window.addEventListener('keydown', e => e.key === 'Escape' && closeFilm());
+
+  /* =========================================================
+     03 ADDRESSES — the panels open one at a time, in whole steps
+     ========================================================= */
+  (() => {
+    const row = $('.pj-row'), panels = $$('.pj-p'), n = panels.length, path = $$('.pj-draw .pj-o');
+    // every photograph is cut to the width (or, on a phone, the height) of an open panel
+    const size = () => {
+      const vert = window.innerWidth <= 900, gap = parseFloat(getComputedStyle(row).columnGap || getComputedStyle(row).gap) || 0, grow = parseFloat(getComputedStyle(row.parentNode.parentNode).getPropertyValue('--grow')) || 5.2;
+      const full = (vert ? row.clientHeight : row.clientWidth) - gap * (n - 1);
+      row.style.setProperty('--os', Math.round(full * grow / (grow + n - 1)) + 'px');
+    };
+    size(); window.addEventListener('resize', size);
+    const open = (i, p) => {
+      panels.forEach((el, k) => el.classList.toggle('on', k === i));
+      gsap.fromTo($$('.pj-top, .pj-name, .pj-line, .pj-facts, .pj-acts', panels[i]), { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, duration: 1, delay: .4, stagger: .07, ease: 'expo.out', overwrite: true });
+      // the last panel: the visitor's T is set out on the sheet, as the first one was at the very start
+      if (panels[i].classList.contains('pj-you')) gsap.fromTo(path, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 2, delay: .45, ease: 'power2.inOut', overwrite: true });
+    };
+    const st = steps('.pj-pin', n, open);
+    panels.forEach((el, k) => {
+      el.addEventListener('click', e => { if (!el.classList.contains('on')) { e.preventDefault(); goStep(st, k, n); } });
+      el.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && !el.classList.contains('on')) { e.preventDefault(); goStep(st, k, n); } });
+    });
+    const reach = () => panels.forEach(el => { const on = el.classList.contains('on'); el.tabIndex = on ? -1 : 0; el.setAttribute('aria-label', on ? '' : 'Open ' + $('.pj-closed h3', el).textContent); if (on) el.removeAttribute('aria-label'); });
+    reach(); new MutationObserver(reach).observe(row, { subtree: true, attributes: true, attributeFilter: ['class'] });
+  })();
+
+  /* =========================================================
+     03b WHAT'S AROUND — each road is lit as far as its drive is long (40 minutes = the full width),
+     the T travelling it; the nearest place arrives first
+     ========================================================= */
+  (() => {
+    const rows = $$('.near-list li');
+    gsap.set(rows, { autoAlpha: .25 });
+    rows.forEach((li, k) => {
+      const m = +li.dataset.min, road = $('.near-road', li), num = $('b span', li), o = { v: 0 };
+      gsap.timeline({ scrollTrigger: { trigger: li, start: 'top 86%', once: true } })
+        .to(li, { autoAlpha: 1, duration: .8, ease: 'power1.out' }, 0)
+        .fromTo(road, { '--p': 0 }, { '--p': m / 40, duration: .6 + m / 40 * 1.4, ease: 'power2.inOut' }, .1)
+        .to(o, { v: m, duration: .6 + m / 40 * 1.4, ease: 'power2.inOut', onUpdate: () => { num.textContent = Math.round(o.v); } }, .1);
+    });
+    gsap.fromTo('.near-bg', { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: '.near', start: 'top bottom', end: 'bottom top', scrub: true } });
+  })();
+
+  /* 02 — the statement: pinned full-screen while each word lights up, then released into the history */
+  gsap.timeline({ scrollTrigger: { trigger: '.since', start: 'top top', end: () => '+=' + Math.round(window.innerHeight * 1.3), pin: true, scrub: .6, anticipatePin: 1 } })
+    .fromTo(splitWords($('.since-lead')), { opacity: .12 }, { opacity: 1, stagger: .1, duration: .6, ease: 'none' })
+    .to({}, { duration: .5 });   // a short hold on the finished sentence before it moves on
+
+  /* =========================================================
+     02.1 HISTORY — the odometer
+     ========================================================= */
+  (() => {
+    const years = [1995, 2000, 2010, 2018, 2026], caps = ['Fig. 1995 · Land', 'Fig. 2000 · Development', 'Fig. 2010 · Expansion', 'Fig. 2018 · Taj Developments', 'Fig. Today · T Developments'];
+    const cols = $$('.odo .d-in'), eras = $$('.hs-era'), imgs = $$('.hs-frame img');
+    const setYear = (y, instant) => String(y).split('').forEach((d, k) => gsap.to(cols[k], { yPercent: -d * 10, duration: instant ? 0 : 1.1, delay: instant ? 0 : k * .06, ease: 'expo.inOut', overwrite: true }));
+    // the ruler: 32 ticks, 1995 → today; the ticks light up behind the travelling T
+    const span = 31, majors = { 1995: '1995', 2000: '2000', 2010: '2010', 2018: '2018', 2026: 'Today' }, tk = $('.hs-ticks');
+    for (let y = 1995; y <= 2026; y++) {
+      const pct = (y - 1995) / span * 100, i = document.createElement('i');
+      i.style.left = pct + '%'; i.dataset.y = y; if (majors[y]) i.className = 'mj'; tk.appendChild(i);
+      if (majors[y]) { const s = document.createElement('small'); s.textContent = majors[y]; s.style.left = pct + '%'; s.dataset.y = y; if (y === 1995) s.className = 'first'; if (y === 2026) s.className = 'last'; tk.appendChild(s); }
+    }
+    const ticks = $$('.hs-ticks i'), marks = $$('.hs-ticks small');
+    let atYear = 1995;
+    const moveRuler = (y, instant) => {
+      const from = atYear, d = instant ? 0 : 1.1; atYear = y;
+      gsap.to('.hs-cur', { left: ((y - 1995) / span * 100) + '%', duration: d, ease: 'expo.inOut', overwrite: true });
+      gsap.to('.hs-fill', { scaleX: (y - 1995) / span, duration: d, ease: 'expo.inOut', overwrite: true });
+      [...ticks, ...marks].forEach(t => {
+        const ty = +t.dataset.y, on = ty <= y;
+        t.style.transitionDelay = instant ? '0s' : (Math.max(0, Math.min(1, (ty - Math.min(from, y)) / Math.max(1, Math.abs(y - from)))) * (y > from ? .8 : .3)).toFixed(2) + 's';
+        t.classList.toggle('on', on);
+      });
+    };
+    setYear(years[0], true); moveRuler(1995, true);
+    let z = 1;
+    steps('.history', 5, (i, p) => {
+      const dir = i > p ? 1 : -1;
+      setYear(years[i]);
+      swap(eras, i, p, dir);
+      wipe(imgs[i], dir, ++z);
+      moveRuler(years[i]);
+      $('.hs-capt').textContent = caps[i];
+    });
+  })();
+
+  /* =========================================================
+     05 SEVEN Ts — the light passes along each word in turn
+     ========================================================= */
+  (() => {
+    const rows = $$('.val-row'), lit = $$('.vr-lit'), descs = $$('.val-desc p'), imgs = $$('.val-frame img');
+    const names = ['Trust', 'Timeless', 'Thrive', 'Togetherness', 'Transformation', 'Transparency', 'Tomorrow'];
+    const shut = 'inset(0% 100% 0% 0%)', open = 'inset(0% 0% 0% 0%)', gone = 'inset(0% 0% 0% 100%)';
+    let z = 1;
+    const st = steps('.values', 7, (i, p) => {
+      const dir = i > p ? 1 : -1;
+      lit.forEach((el, k) => {
+        if (k === i) gsap.fromTo(el, { clipPath: dir > 0 ? shut : gone }, { clipPath: open, duration: .95, ease: 'expo.inOut', overwrite: true });
+        else if (k === p) gsap.fromTo(el, { clipPath: open }, { clipPath: dir > 0 ? gone : shut, duration: .75, ease: 'expo.inOut', overwrite: true });
+        else { gsap.killTweensOf(el); gsap.set(el, { clipPath: shut }); }
+      });
+      rows.forEach((r, k) => r.classList.toggle('on', k === i));
+      swap(descs, i, p, dir);
+      wipe(imgs[i], dir, ++z);
+      $('.val-capt').textContent = 'T · ' + names[i];
+      $('.val-capn').firstChild.textContent = '0' + (i + 1);
+      gsap.fromTo(['.val-capt', '.val-capn'], { autoAlpha: 0, y: 14 * dir }, { autoAlpha: 1, y: 0, duration: .8, delay: .35, stagger: .06, ease: 'expo.out', overwrite: true });
+    });
+    rows.forEach((r, k) => r.addEventListener('click', () => goStep(st, k, 7)));
+  })();
+
+  /* =========================================================
+     06 CONTACT — the window shows the address you choose
+     ========================================================= */
+  (() => {
+    const form = $('.slip'), cta = $('.cta'), nm = $('#f-name'), ph = $('#f-phone');
+    const wins = $$('.cta-bg img');
+    // choosing an address changes the whole scene behind the card
+    $$('input[name=project]', form).forEach(r => r.addEventListener('change', () => {
+      wins.forEach(img => img.classList.toggle('on', img.dataset.k === r.value));
+    }));
+    // "Register interest" on a project card arrives at the form with that project already chosen
+    $$('[data-pick]').forEach(a => a.addEventListener('click', () => {
+      const r = $$('input[name=project]', form).find(x => x.value === a.dataset.pick);
+      if (r && !r.checked) { r.checked = true; r.dispatchEvent(new Event('change')); }
+    }));
+    [nm, ph].forEach(inp => inp.addEventListener('input', () => inp.closest('.row').classList.remove('err')));
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = nm.value.trim(), phone = ph.value.replace(/\D/g, ''), b1 = name.length < 2, b2 = phone.length < 8;
+      nm.closest('.row').classList.toggle('err', b1); ph.closest('.row').classList.toggle('err', b2);
+      if (b1 || b2) { (b1 ? nm : ph).focus(); return; }
+      const time = (form.querySelector('input[name=time]:checked') || {}).value || 'morning';
+      $('.ok-n').textContent = name.split(' ')[0];
+      $('.ok-p').textContent = `A T advisor will call you in the ${time}.`;
+      gsap.to(form, { autoAlpha: 0, y: -20, duration: .5, ease: 'power2.in', onComplete: () => {
+        cta.classList.add('sent'); form.style.display = 'none';
+        gsap.fromTo(['.ok .lbl', '.ok h3', '.ok p'], { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 1, stagger: .1, ease: 'expo.out' });
+      } });
+    });
+    gsap.fromTo('.cta-bg', { yPercent: -5 }, { yPercent: 5, ease: 'none', scrollTrigger: { trigger: '.cta', start: 'top bottom', end: 'bottom top', scrub: true } });
+    gsap.fromTo('.cta-card', { y: 70, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.3, ease: 'expo.out', scrollTrigger: { trigger: '.cta-card', start: 'top 92%' } });
+  })();
+
+  /* footer newsletter */
+  (() => {
+    const f = $('.news'), inp = $('input', f);
+    inp.addEventListener('input', () => f.classList.remove('err'));
+    f.addEventListener('submit', e => {
+      e.preventDefault();
+      if (!/^\S+@\S+\.\S+$/.test(inp.value.trim())) { f.classList.add('err'); inp.focus(); return; }
+      gsap.to(f, { autoAlpha: 0, y: -10, duration: .4, ease: 'power2.in', onComplete: () => gsap.fromTo('.news-ok', { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: .8, ease: 'expo.out' }) });
+    });
+  })();
+
+  /* =========================================================
+     REVEALS (created after every pin)
+     ========================================================= */
+  $$('[data-rise]').forEach(el => gsap.fromTo(el, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.3, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 90%' } }));
+  gsap.fromTo(splitWords($('.cta-h')), { yPercent: 110 }, { yPercent: 0, duration: 1.2, stagger: .06, ease: 'expo.out', scrollTrigger: { trigger: '.cta-h', start: 'top 85%' } });
+  gsap.fromTo('.slip > *', { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 1.1, stagger: .07, ease: 'expo.out', scrollTrigger: { trigger: '.slip', start: 'top 88%' } });
+  gsap.fromTo('.rec-row', { autoAlpha: 0, y: 26 }, { autoAlpha: 1, y: 0, duration: 1, stagger: .08, ease: 'expo.out', scrollTrigger: { trigger: '.rec-list', start: 'top 82%' } });
+  // each row lights its Ts one by one as it arrives — 48 marks in all
+  $$('.tks').forEach(box => {
+    const n = +box.dataset.n;
+    box.innerHTML = '<svg viewBox="0 0 200 104"><use href="#T"/></svg>'.repeat(n);
+    gsap.to($$('svg', box), { opacity: 1, duration: .35, stagger: .045, ease: 'power2.out', scrollTrigger: { trigger: box, start: 'top 86%' } });
+  });
+  $$('[data-count]').forEach(el => { const end = +el.dataset.count, o = { v: 0 }; ScrollTrigger.create({ trigger: el, start: 'top 92%', once: true, onEnter: () => gsap.to(o, { v: end, duration: 1.8, ease: 'power3.out', onUpdate: () => el.textContent = Math.round(o.v).toLocaleString('en-US') }) }); });
+
+  /* footer: it rises from beneath the page, the letters stand up, a slow beam drifts across them — the cursor can take it over */
+  (() => {
+    const foot = $('.footer'), mark = $('.fmark'), chars = splitChars($('.fm-base'));
+    gsap.set(chars, { yPercent: 100 });
+    gsap.fromTo('.footer > .wrap, .marquee', { yPercent: -10 }, { yPercent: 0, ease: 'none', scrollTrigger: { trigger: '#top', start: 'bottom bottom', end: () => 'bottom ' + Math.max(0, window.innerHeight - foot.offsetHeight) + 'px', scrub: true, invalidateOnRefresh: true } });
+    const beam = { x: .12, y: .55 }, auto = { x: .12, y: .55 }, hand = { x: .5, y: .5, on: false }, lift = chars.map(() => 0);
+    gsap.to(auto, { x: .88, duration: 7, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    let live = false, risen = false;
+    // every letter paints its own share of one spotlight; under the cursor the letters also rise a little, like a wave
+    const paint = () => {
+      const t = hand.on ? hand : auto;
+      beam.x += (t.x - beam.x) * .08; beam.y += (t.y - beam.y) * .08;
+      const mr = mark.getBoundingClientRect(), bx = mr.left + beam.x * mr.width, by = mr.top + beam.y * mr.height, R = Math.max(150, mr.width * .17);
+      chars.forEach((c, k) => {
+        const r = c.getBoundingClientRect();
+        c.style.backgroundImage = `radial-gradient(circle ${R | 0}px at ${(bx - r.left) | 0}px ${(by - r.top) | 0}px, #F4F5F7 0, rgba(214,219,226,.8) 22%, rgba(120,126,136,.32) 48%, rgba(35,38,44,0) 72%)`;
+        if (!risen) return;
+        const dx = (r.left + r.width / 2 - bx) / R, target = hand.on ? -10 * Math.exp(-dx * dx * 2.2) : 0;
+        lift[k] += (target - lift[k]) * .12;
+        gsap.set(c, { yPercent: lift[k] });
+      });
+    };
+    gsap.timeline({ scrollTrigger: { trigger: '#top', start: 'bottom 55%' } })
+      .to(chars, { yPercent: 0, duration: 1.4, ease: 'expo.out', stagger: .035, onComplete: () => { risen = true; } });
+    ScrollTrigger.create({ trigger: '#top', start: 'bottom bottom', onEnter: () => { if (!live) { live = true; gsap.ticker.add(paint); } }, onLeaveBack: () => { live = false; gsap.ticker.remove(paint); } });
+    if (fine) {
+      mark.addEventListener('pointerenter', () => { hand.on = true; });
+      mark.addEventListener('pointerleave', () => { hand.on = false; });
+      mark.addEventListener('pointermove', e => { const r = mark.getBoundingClientRect(); hand.x = (e.clientX - r.left) / r.width; hand.y = (e.clientY - r.top) / r.height; });
+    }
+  })();
+
+  // nav highlight
+  const chapters = ['#montro', '#projects', '#about', '#values', '#contact'].map(s => $(s)), navLinks = $$('.nav a'), ind = $('.nav-ind');
+  let navOn = -1;
+  const setNav = i => {
+    if (i === navOn) return; navOn = i;
+    navLinks.forEach((a, k) => a.classList.toggle('on', k === i));
+    if (i < 0) { gsap.to(ind, { opacity: 0, duration: .35, overwrite: true }); return; }
+    const a = navLinks[i];
+    gsap.to(ind, { x: a.offsetLeft, width: a.offsetWidth, opacity: 1, duration: ind.style.opacity === '' ? 0 : .75, ease: 'expo.out', overwrite: true });
+  };
+  // the chapter in view is simply the last one whose top has passed the middle of the screen (robust around pinned sections)
+  const navProg = $('.nav-prog i');
+  const readNav = self => {
+    navProg.style.transform = `scaleX(${self.progress.toFixed(4)})`;
+    const lim = window.innerHeight * .55; let a = -1;
+    chapters.forEach((c, k) => { if (c.getBoundingClientRect().top <= lim) a = k; });
+    setNav(a);
+    // the phone dock appears once the hero has handed the T to the logo, and steps aside when the contact section arrives
+    const reach = self.scroll() > stageEnd - window.innerHeight * .2 && chapters[4].getBoundingClientRect().top > window.innerHeight * .7;
+    dock.classList.toggle('on', reach); wa.classList.toggle('on', reach);
+  };
+  const dock = $('.dock'), wa = $('.wa');
+  ScrollTrigger.create({ start: 0, end: 'max', onUpdate: readNav, onRefresh: readNav });
+
+  gsap.ticker.add(() => {
+    if (!root.classList.contains('no-webgl')) return;
+    const s = TState; $('.t-fallback').style.transform = `translate(-50%,-50%) translate(${s.x * 100}vw, ${-s.y * 100}vh) scale(${s.scale})`; $('.t-fallback').style.opacity = .2 + s.light * .8;
+  });
+  window.addEventListener('load', () => { if (root.classList.contains('is-loading')) window.scrollTo(0, 0); layoutFoot(); ScrollTrigger.refresh(); });
+})();
+</script>
+
+<!-- WebGL: a chrome T — and, on its other side, the word of each line, cut in the same classical capitals as the T -->
+<script type="module">
+import * as THREE from 'three';
+// the word fonts (opentype, ~450 KB) are fetched only after the T is on screen — the preloader never waits for them
+
+function init() {
+  const canvas = document.querySelector('.t-canvas');
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' }); }
+  catch (e) { document.documentElement.classList.add('no-webgl'); window.TReady = true; window.dispatchEvent(new Event('tready')); return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = .03;
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(28, 1, .1, 100);
+  camera.position.set(0, 0, 10);
+
+  /* studio environment */
+  const env = new THREE.Scene(); env.background = new THREE.Color(0x040506);
+  const panel = (w, h, hex, k, pos, rot) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(hex).multiplyScalar(k), side: THREE.DoubleSide })); m.position.set(...pos); if (rot) m.rotation.set(...rot); env.add(m); };
+  panel(14, 2.4, 0xffffff, 4.2, [0, 7, 0], [Math.PI / 2, 0, 0]);
+  panel(.5, 12, 0xe8efff, 3.2, [2.6, 0, 7]);
+  panel(10, .35, 0xffffff, 2.6, [0, 2.2, 7]);
+  panel(.6, 12, 0xdfe8ff, 2.0, [-7, 0, 1], [0, Math.PI / 2, 0]);
+  panel(.6, 12, 0xffffff, 1.6, [7, 0, 0], [0, -Math.PI / 2, 0]);
+  panel(8, 4, 0x3a5272, 1.0, [-3.5, -3.2, 6]);
+  panel(2.2, 2.2, 0xffcf9e, 1.4, [5, -1.2, 5]);
+  {
+    const c = document.createElement('canvas'); c.width = 64; c.height = 512;
+    const g = c.getContext('2d'), gr = g.createLinearGradient(0, 0, 0, 512);
+    [[0, '#ffffff'], [.2, '#d8dee6'], [.36, '#8a94a1'], [.43, '#232a33'], [.465, '#ffffff'], [.5, '#2c333d'], [.58, '#12161c'], [.66, '#46505c'], [1, '#0b0e12']].forEach(([o, col]) => gr.addColorStop(o, col));
+    g.fillStyle = gr; g.fillRect(0, 0, 64, 512);
+    const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace;
+    const wall = new THREE.Mesh(new THREE.PlaneGeometry(22, 12), new THREE.MeshBasicMaterial({ map: tex, side: THREE.DoubleSide }));
+    wall.material.color.setScalar(1.9); wall.position.set(0, .6, 8.5); env.add(wall);
+  }
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  const bake = () => { const rt = pmrem.fromScene(env, .02); if (scene.environment) scene.environment.dispose(); scene.environment = rt.texture; };
+  bake();
+  // the T is "ready" only when the hall's reflection is baked and its shaders are compiled,
+  // so none of that heavy work can land in the middle of the preloader's animation
+  const announce = () => { if (window.TReady) return; renderer.compile(scene, camera); window.TReady = true; window.dispatchEvent(new Event('tready')); };
+  new THREE.TextureLoader().load(document.querySelector('.plate img').currentSrc || 'assets/img/hero-hall.jpg', t => {
+    t.colorSpace = THREE.SRGBColorSpace;
+    const room = new THREE.Mesh(new THREE.SphereGeometry(30, 48, 24), new THREE.MeshBasicMaterial({ map: t, side: THREE.BackSide }));
+    room.material.color.setScalar(.9); room.rotation.y = Math.PI; env.add(room); bake();
+    requestAnimationFrame(announce);
+  }, undefined, () => requestAnimationFrame(announce));
+  setTimeout(announce, 2500);
+
+  // one chrome for the T and for every word — so they read as the same object, turned
+  const mat = new THREE.MeshPhysicalMaterial({ color: 0xdfe3e9, metalness: 1, roughness: .13, clearcoat: .8, clearcoatRoughness: .08, envMapIntensity: 1.5 });
+  // a key light from above-left and a cool rim from behind: highlights run along every bevel, so depth is visible
+  const key = new THREE.DirectionalLight(0xffffff, 0); key.position.set(-2.5, 3.5, 5); scene.add(key);
+  const rim = new THREE.DirectionalLight(0xdfe8ff, 0); rim.position.set(3, 1.5, -3); scene.add(rim);
+
+  /* the T (width 1, centred) */
+  const S = 1 / 200, p = (x, y) => [x * S, -y * S];
+  // ONE outline for the whole letter — bar and stem are a single solid, so there is no seam where they meet
+  const tShape = new THREE.Shape();
+  tShape.moveTo(...p(0, 0)); tShape.lineTo(...p(200, 0)); tShape.lineTo(...p(200, 38)); tShape.lineTo(...p(174, 16)); tShape.lineTo(...p(117, 16)); tShape.lineTo(...p(117, 70));
+  tShape.bezierCurveTo(...p(117, 92), ...p(130, 98), ...p(160, 98)); tShape.lineTo(...p(164, 98)); tShape.lineTo(...p(166, 104)); tShape.lineTo(...p(34, 104)); tShape.lineTo(...p(36, 98)); tShape.lineTo(...p(40, 98));
+  tShape.bezierCurveTo(...p(70, 98), ...p(83, 92), ...p(83, 70)); tShape.lineTo(...p(83, 16)); tShape.lineTo(...p(26, 16)); tShape.lineTo(...p(0, 38)); tShape.lineTo(...p(0, 0));
+  const depth = .085, ext = { depth, bevelEnabled: true, bevelThickness: .012, bevelSize: .007, bevelSegments: 8, curveSegments: 48 };
+  const T = new THREE.Group();
+  { const g = new THREE.ExtrudeGeometry(tShape, ext); g.translate(-.5, .26, -depth / 2); T.add(new THREE.Mesh(g, mat)); }
+  const holder = new THREE.Group(); holder.add(T); scene.add(holder);
+
+  /* the words on the T's other side — Cinzel Black, the classical Roman capital the T is cut from */
+  const faces = [T];
+  const WORDS = ['STRUCTURE', 'GUIDE', 'LIFE', 'LINE'];
+  let TextGeometry = null;
+  // the words are built one at a time, each in a quiet moment between frames, so the floating T never stalls
+  const idle = fn => (window.requestIdleCallback ? requestIdleCallback(fn, { timeout: 1500 }) : setTimeout(fn, 80));
+  const makeWord = (font, w) => {
+    // deep extrusion and a rounded bevel, like a block of polished steel — not a flat sign
+    const g = new TextGeometry(w, { font, size: .4, height: .12, depth: .12, curveSegments: 12, bevelEnabled: true, bevelThickness: .02, bevelSize: .011, bevelSegments: 6 });
+    g.computeBoundingBox(); const b = g.boundingBox; g.translate(-(b.max.x + b.min.x) / 2, -(b.max.y + b.min.y) / 2, -(b.max.z + b.min.z) / 2);
+    const mesh = new THREE.Mesh(g, mat); mesh.visible = false; mesh.userData.w = b.max.x - b.min.x;
+    holder.add(mesh); faces.push(mesh);
+  };
+  const build = font => { let k = 0; const next = () => { if (k < WORDS.length) { makeWord(font, WORDS[k++]); idle(next); } }; idle(next); };
+  // one letter size for every word: the longest word sets it, the short ones keep the same cap height
+  const longest = () => Math.max(...faces.slice(1).map(f => f.userData.w), .001);
+  const loadWords = () => Promise.all([import('three/addons/loaders/FontLoader.js'), import('three/addons/loaders/TTFLoader.js'), import('three/addons/geometries/TextGeometry.js')])
+    .then(([{ Font, FontLoader }, { TTFLoader }, tg]) => {
+      TextGeometry = tg.TextGeometry;
+      new TTFLoader().load('assets/fonts/cinzel-latin-900-normal.ttf', json => build(new Font(json)), undefined,
+        () => new FontLoader().load('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/fonts/droid/droid_serif_bold.typeface.json', build));
+    }).catch(e => console.warn('3D words unavailable', e));
+  const faceAt = n => (n >= faces.length || n === 5) ? faces[0] : faces[n];
+  const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+
+  /* dust */
+  const N = 320, pos = new Float32Array(N * 3), spd = new Float32Array(N);
+  for (let i = 0; i < N; i++) { pos[i * 3] = (Math.random() - .5) * 8; pos[i * 3 + 1] = (Math.random() - .5) * 6; pos[i * 3 + 2] = -3 + Math.random() * 4.5; spd[i] = .2 + Math.random() * .8; }
+  const dg = new THREE.BufferGeometry(); dg.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  const dc = document.createElement('canvas'); dc.width = dc.height = 64;
+  const cx = dc.getContext('2d'), gr = cx.createRadialGradient(32, 32, 0, 32, 32, 32);
+  gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(.4, 'rgba(255,255,255,.35)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+  cx.fillStyle = gr; cx.fillRect(0, 0, 64, 64);
+  const dustMat = new THREE.PointsMaterial({ size: .04, map: new THREE.CanvasTexture(dc), transparent: true, opacity: 0, depthWrite: false, blending: THREE.AdditiveBlending, color: 0xcfdbea });
+  scene.add(new THREE.Points(dg, dustMat));
+
+  let visW = 1, visH = 1;
+  const resize = () => { const w = window.innerWidth, h = window.innerHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); visH = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z; visW = visH * camera.aspect; };
+  resize(); window.addEventListener('resize', resize);
+  const m = { x: 0, y: 0, sx: 0, sy: 0 };
+  window.addEventListener('pointermove', e => { m.x = e.clientX / window.innerWidth * 2 - 1; m.y = e.clientY / window.innerHeight * 2 - 1; });
+
+  const stage = document.querySelector('.stage'), clock = new THREE.Clock();
+  const tick = () => {
+    requestAnimationFrame(tick);
+    const r = stage.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > window.innerHeight) return;
+    const t = clock.getElapsedTime(), s = window.TState;
+    m.sx += (m.x - m.sx) * .035; m.sy += (m.y - m.sy) * .035;
+    const calm = Math.max(0, 1 - Math.abs(s.scale - 1) * 4);
+    const unit = visW * (camera.aspect < .9 ? .66 : .31);
+    holder.scale.setScalar(unit * s.scale);
+    holder.position.set(s.x * visW, s.y * visH + Math.sin(t * .8) * .025 * calm, 0);
+    const free = .35 + .65 * calm;   // the words still follow the cursor a little
+    holder.rotation.set(s.rotX + m.sy * .07 * free, s.rotY + m.sx * .2 * free + Math.sin(t * .35) * .05 * calm, s.rotZ);
+    key.intensity = 2.4 * s.light; rim.intensity = 1.6 * s.light;
+
+    // turn between faces: the current one turns away, the next turns in from its edge
+    const i = Math.floor(s.seq), f = s.seq - i, k = smooth(.08, .92, f);
+    faces.forEach(o => { o.visible = false; });
+    const maxW = camera.aspect < .9 ? 2 : 2.6, wordScale = maxW / longest();
+    const show = (o, ang) => { o.visible = true; o.rotation.y = ang; if (o !== T) o.rotation.x = -.12; const sc = o === T ? 1 : wordScale; o.scale.setScalar(sc * (1 - .1 * Math.sin(k * Math.PI))); };
+    if (k <= 0) show(faceAt(i), 0);
+    else if (k >= 1) show(faceAt(i + 1), 0);
+    else if (k < .5) show(faceAt(i), k * Math.PI);
+    else show(faceAt(i + 1), -(1 - k) * Math.PI);
+
+    renderer.toneMappingExposure = .03 + s.light * 1.02 + s.flash * 1.6;
+    dustMat.opacity = .5 * s.light;
+    const a = dg.attributes.position.array;
+    for (let j = 0; j < N; j++) { a[j * 3 + 1] += .003 * spd[j]; a[j * 3] += Math.sin(t * .3 + j) * .0007; if (a[j * 3 + 1] > 3.2) a[j * 3 + 1] = -3.2; }
+    dg.attributes.position.needsUpdate = true;
+    renderer.render(scene, camera);
+  };
+  tick();
+  // the 3D words are heavy to build — they are made only once the hero is on screen and still
+  let wordsAsked = false; const askWords = () => { if (!wordsAsked) { wordsAsked = true; loadWords(); } };
+  window.addEventListener('heroready', () => idle(askWords), { once: true }); setTimeout(askWords, 9000);
+}
+try { init(); } catch (e) { console.error(e); document.documentElement.classList.add('no-webgl'); window.TReady = true; window.dispatchEvent(new Event('tready')); }
+</script>
+</body>
+</html>
