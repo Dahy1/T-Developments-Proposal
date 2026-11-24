@@ -1229,7 +1229,8 @@ window.TState = { x:0, y:0, scale:1, rotX:0, rotY:0, rotZ:0, light:0, flash:0, t
       fs = Math.min(100 * (W - pad * 2) / wl, 100 * (W - pad * 2) / wr) * .92;
       topL = tTop - W * .06 - base(fs);
       topR = tBot + W * .06 - (base(fs) - cap * fs);
-      L.style.left = ''; R.style.left = ''; R.style.right = '';
+      const cL = (W - wl * fs / 100) / 2, cR = (W - wr * fs / 100) / 2;
+      L.style.left = cL + 'px'; R.style.left = cR + 'px'; R.style.right = 'auto';
     }
     set('--hl-fs', fs + 'px'); set('--hr-fs', fs + 'px'); set('--hl-top', topL + 'px'); set('--hr-top', topR + 'px');
   }
