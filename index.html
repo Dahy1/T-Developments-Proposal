@@ -115,8 +115,8 @@ button{cursor:pointer}
 .ulink:hover .arrow{transform:translateX(5px)}
 
 /* =========================================================
-   PRELOADER — "Every strong line needs another": one line runs across the sheet, a second drops from its
-   centre, and the T is traced around the two. Then the drawing becomes a mould — silver pours in, a light runs
+   PRELOADER — "Every strong line needs another": the T is traced on the drawing sheet, both halves at once
+   from its top centre. Then the drawing becomes a mould — silver pours in, a light runs
    across the new metal, it glows — and that light opens the room:
    the dark sheet clears outward from the T, softly, and the chrome T is standing where it was drawn.
    ========================================================= */
@@ -133,7 +133,6 @@ html.is-loading .hero-words,html.is-loading .ui,html.is-loading .hdr,html.is-loa
 .ld-grid{position:absolute;inset:0;opacity:0;background-image:linear-gradient(rgba(219,222,227,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(219,222,227,.045) 1px,transparent 1px);background-size:64px 64px;background-position:center center;animation:ldGrid 1.2s .1s var(--ease) forwards}
 @keyframes ldGrid{to{opacity:1}}
 .ld-t{position:absolute;left:50%;top:50%;width:var(--tw);height:calc(var(--tw)*.52);margin:calc(var(--tw)*-.26) 0 0 calc(var(--tw)/-2);overflow:visible}
-.ld-t .ld-cons line{stroke:rgba(219,222,227,.24)}
 .ld-t .o{fill:none;stroke:var(--mist);stroke-dasharray:1 2;stroke-dashoffset:1;stroke-linejoin:round}
 .ld-t .fill{fill:url(#ldMetal);opacity:0}
 .ld-t .ld-pen circle{fill:#fff;opacity:0}
@@ -220,21 +219,18 @@ html.is-loading .hero-words,html.is-loading .ui,html.is-loading .hdr,html.is-loa
 .hero-side .q{color:var(--d-4)}
 .hero-bottom{position:absolute;left:var(--pad);right:var(--pad);bottom:var(--edge);display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:var(--s-5)}
 .hb-l h3{font-size:var(--fs-h4);font-weight:700;letter-spacing:var(--ls-snug);color:var(--d-1);line-height:var(--lh-title);margin-bottom:var(--s-3)}
-.hb-l p{max-width:360px;font-size:var(--fs-body);color:var(--d-3);line-height:var(--lh-body)}
+.hb-l p{max-width:470px;font-size:var(--fs-body);color:var(--d-3);line-height:var(--lh-body);text-wrap:balance}   /* two lines */
 /* scroll cue — a small T travels down a line: literally, follow the T */
 .cue{display:flex;justify-content:center}
 .cue-line{position:relative;width:1px;height:34px;background:linear-gradient(180deg,rgba(219,222,227,0),rgba(219,222,227,.45) 30%,rgba(219,222,227,.45) 70%,rgba(219,222,227,0))}
 .cue-line svg{position:absolute;left:50%;top:0;width:16px;margin-left:-8px;fill:var(--d-1);filter:drop-shadow(0 0 6px rgba(255,255,255,.5));animation:follow 2.2s var(--ease) infinite}
 @keyframes follow{0%{transform:translateY(-4px);opacity:0}20%{opacity:1}70%{opacity:1}100%{transform:translateY(30px);opacity:0}}
-/* new launch — Montro seen through a small T: the same window its section opens with. A door into Montro, not a card. */
+/* new launch — a photograph of Montro beside its name; a small T marks the label, a line reaches out as the way in */
 .launch{justify-self:end;display:flex;align-items:center;gap:var(--s-5)}
-.launch-media{position:relative;flex:none;display:flex;flex-direction:column;gap:var(--s-2);width:clamp(132px,10vw,168px)}
-.launch-win{position:relative;display:block;aspect-ratio:200/104;background:var(--graphite);-webkit-mask:var(--T) center/100% 100% no-repeat;mask:var(--T) center/100% 100% no-repeat;transform-origin:50% 0;transition:transform .9s var(--ease)}
-.launch-win img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.18);filter:brightness(1.35) saturate(1.05);transition:opacity 1s var(--ease),transform 4.6s linear}
-/* a fine frame of light around the T, so it reads as a window you look through, even over the dark hall */
-.launch-frame{position:absolute;left:0;top:0;width:100%;aspect-ratio:200/104;overflow:visible;pointer-events:none;transform-origin:50% 0;transition:transform .9s var(--ease)}
-.launch-frame path{fill:none;stroke:rgba(244,245,247,.5);stroke-width:1;vector-effect:non-scaling-stroke;stroke-linejoin:round}
-.launch-win img.on{opacity:1;transform:scale(1.02)}
+.launch-media{position:relative;flex:none;display:flex;flex-direction:column;gap:var(--s-2);width:clamp(140px,11vw,180px)}
+.launch-win{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;background:var(--graphite);box-shadow:0 24px 50px -28px rgba(0,0,0,.8)}
+.launch-win img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.12);transition:opacity 1s var(--ease),transform 4.6s linear}
+.launch-win img.on{opacity:1;transform:scale(1)}
 /* three hairlines under the T — one for each view, filling while it shows */
 .launch-dots{display:flex;gap:var(--s-1)}
 .launch-dots i{position:relative;flex:1;height:1px;background:rgba(244,245,247,.2);overflow:hidden}
@@ -249,7 +245,7 @@ html.is-loading .hero-words,html.is-loading .ui,html.is-loading .hdr,html.is-loa
 .launch-go{display:flex;align-items:center;margin-top:var(--s-3);font-size:var(--fs-label);font-weight:700;letter-spacing:var(--ls-btn);text-transform:uppercase;line-height:1;color:var(--d-2);transition:color .5s}
 .launch-go i{display:block;width:28px;height:1px;margin-left:var(--s-3);background:currentColor;transition:width .7s var(--ease)}
 .launch-go .arrow{width:12px;height:12px;margin-left:-11px}
-.launch:hover .launch-win,.launch:hover .launch-frame{transform:scale(1.06)}
+.launch-win::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(244,245,247,.12);pointer-events:none}
 .launch:hover .launch-go{color:var(--d-1)}
 .launch:hover .launch-go i{width:56px}
 /* the manifesto — one picture at a time: the word in the middle (where the T turned), its line beneath, four marks for the four lines */
@@ -424,7 +420,7 @@ html.is-loading .hero-words,html.is-loading .ui,html.is-loading .hdr,html.is-loa
 .pj-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:end;padding-top:var(--sec);padding-bottom:var(--s-7)}
 .pj-head h2{grid-column:1/9;font-size:var(--fs-h1)}
 .pj-head h2 .muted{color:var(--l-3)}
-.pj-head p{grid-column:9/13;max-width:360px;font-size:var(--fs-lead);line-height:var(--lh-lead);color:var(--l-2)}
+.pj-head p{grid-column:9/13;font-size:var(--fs-lead);line-height:var(--lh-lead);color:var(--l-2)}
 .pj-pin{height:100vh;height:100svh;padding-top:var(--pin-top);padding-bottom:var(--pin-bot)}
 .pj-row{display:flex;gap:var(--s-3);height:100%}
 .pj-p{position:relative;flex:1 1 0;min-width:0;min-height:0;overflow:hidden;background:var(--graphite);color:var(--d-2);cursor:pointer;transition:flex-grow 1.1s var(--ease)}
@@ -486,7 +482,7 @@ html.is-loading .hero-words,html.is-loading .ui,html.is-loading .hdr,html.is-loa
 .near-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:end}
 .near-head h2{grid-column:1/8;font-size:var(--fs-h1);color:var(--d-1)}
 .near-head h2 .muted{color:var(--d-3)}
-.near-lead{grid-column:9/13;max-width:380px;font-size:var(--fs-lead);line-height:var(--lh-lead);color:var(--d-2)}
+.near-lead{grid-column:9/13;font-size:var(--fs-lead);line-height:var(--lh-lead);color:var(--d-2)}
 .near-list{list-style:none;margin-top:var(--s-8)}
 .near-list li{position:relative;display:grid;grid-template-columns:48px minmax(0,1fr) auto;align-items:end;column-gap:var(--s-5);padding:var(--s-5) 0 var(--s-4)}
 .near-list .n{align-self:start;padding-top:.6em;font-size:var(--fs-label);letter-spacing:var(--ls-label);color:var(--d-4);font-variant-numeric:tabular-nums}
@@ -738,7 +734,7 @@ html.is-loading .hero-words,html.is-loading .ui,html.is-loading .hdr,html.is-loa
   .m-lead{font-size:var(--fs-body);margin:var(--s-4) 0 var(--s-5)}
   .dn button{padding:var(--s-2) var(--s-3)}
   .launch{gap:var(--s-3)}
-  .launch-media{width:112px}
+  .launch-media{width:116px}
   .launch-txt{flex:1;padding-left:var(--s-4)}
   .launch-sub{display:none}
   .foot-bot{flex-direction:column;align-items:flex-start}
@@ -770,8 +766,6 @@ html.is-loading .hero-words,html.is-loading .ui,html.is-loading .hdr,html.is-loa
   <div class="ld-shade"><div class="ld-grid"></div></div>
   <div class="ld-glow"><svg viewBox="0 0 200 104" preserveAspectRatio="none"><path d="M0 0H200V38L174 16H117V70C117 92 130 98 160 98H164L166 104H34L36 98H40C70 98 83 92 83 70V16H26L0 38Z"/></svg></div>
   <svg class="ld-t" viewBox="0 0 200 104" preserveAspectRatio="none">
-    <!-- every strong line needs another: the T's top, run across the sheet — and its centre, dropped from it -->
-    <g class="ld-cons"><line x1="-1600" y1="0" x2="1800" y2="0"/><line x1="100" y1="0" x2="100" y2="1700"/></g>
     <defs>
       <!-- the cast metal: silver, lit from above like the chrome T it is about to become -->
       <linearGradient id="ldMetal" x1="0" y1="0" x2=".3" y2="1"><stop offset="0" stop-color="#F6F8FA"/><stop offset=".42" stop-color="#C6CCD4"/><stop offset=".55" stop-color="#9EA6B0"/><stop offset=".72" stop-color="#DEE3E9"/><stop offset="1" stop-color="#BAC1CA"/></linearGradient>
@@ -853,11 +847,10 @@ html.is-loading .hero-words,html.is-loading .ui,html.is-loading .hdr,html.is-loa
     <div class="hero-bottom">
       <div class="hb-l"><h3>Takes you higher.</h3><p>A family-built developer creating timeless communities in West Cairo — built by families, for families, since 1995.</p></div>
       <div class="cue" aria-hidden="true"><span class="cue-line"><svg viewBox="0 0 200 104"><use href="#T"/></svg></span></div>
-      <!-- the new launch: Montro, seen through a small T — the same window its section opens with -->
+      <!-- the new launch: a photograph of Montro, three views in turn -->
       <a class="launch" href="#montro" data-scroll aria-label="Montro Residence, now launching in Sheikh Zayed — discover">
         <span class="launch-media" aria-hidden="true">
           <span class="launch-win"><img class="on" src="assets/img/montro-hotel-night.jpg" alt=""><img src="assets/img/montro-pool-night.jpg" alt=""><img src="assets/img/montro-interior-night.jpg" alt=""></span>
-          <svg class="launch-frame" viewBox="0 0 200 104" preserveAspectRatio="none"><path d="M0 0H200V38L174 16H117V70C117 92 130 98 160 98H164L166 104H34L36 98H40C70 98 83 92 83 70V16H26L0 38Z"/></svg>
           <span class="launch-dots"><i><b></b></i><i><b></b></i><i><b></b></i></span>
         </span>
         <span class="launch-txt">
@@ -1333,39 +1326,32 @@ window.TState = { x:0, y:0, scale:1, rotX:0, rotY:0, rotZ:0, light:0, flash:0, t
     const q1 = $('.ld-quote span'), q2 = $('.ld-quote b');
     // hairlines stay about one screen pixel at any size (a hidden tab lays out at zero width: fall back to the T's own size)
     const tw = $('.ld-t').getBoundingClientRect().width || window.innerWidth * (portrait() ? .66 : .31) || 400, unit = 200 / tw;
-    const paths = $$('.ld-t .o'), pens = $$('.ld-pen circle'), cons = $$('.ld-cons line');
+    const paths = $$('.ld-t .o'), pens = $$('.ld-pen circle');
     paths.forEach(p => p.setAttribute('stroke-width', 1.4 * unit));
-    cons.forEach(l => l.setAttribute('stroke-width', unit));
     pens.forEach(c => c.setAttribute('r', 2.4 * unit));
-    gsap.set(cons[0], { scaleX: 0, svgOrigin: '100 0' });   // runs across, from the centre outward
-    gsap.set(cons[1], { scaleY: 0, svgOrigin: '100 0' });   // drops down, from the middle of the first
     // the pen: one value drives both halves of the outline and the two points of light
     const R = Math.hypot(window.innerWidth, window.innerHeight) / 2 + 8, F = Math.max(window.innerWidth, window.innerHeight) * .42;
     const pen = { f: 0 };
     const drawTo = () => paths.forEach((p, k) => { p.style.strokeDashoffset = 1 - pen.f; const q = p.getPointAtLength(p.getTotalLength() * pen.f); pens[k].setAttribute('cx', q.x); pens[k].setAttribute('cy', q.y); });
     const tl = gsap.timeline();
-    // 1 — one strong line runs across the sheet…
-    tl.to(cons[0], { scaleX: 1, duration: .8, ease: 'expo.inOut' }, .1)
+    // 1 — the T is drawn at once: two pens leave the top centre and meet at the foot, while the sentence appears
+    tl.to(pens, { opacity: 1, duration: .2 }, .1)
+      .to(pen, { f: 1, duration: 1.2, ease: 'power3.inOut', onUpdate: drawTo }, .1)
+      .to(pens, { opacity: 0, duration: .25, ease: 'power1.in' }, 1.15)
       .to(q1, { opacity: 1, duration: .6, ease: 'power1.out' }, .2)
-      // 2 — …and another drops from its centre
-      .to(cons[1], { scaleY: 1, duration: .7, ease: 'expo.inOut' }, .5)
-      .to(q2, { opacity: 1, duration: .6, ease: 'power1.out' }, .65)
-      // 3 — and the T is traced around the two: both pens leave the top centre and meet at the foot
-      .to(pens, { opacity: 1, duration: .2 }, .7)
-      .to(pen, { f: 1, duration: 1.2, ease: 'power3.inOut', onUpdate: drawTo }, .7)
-      .to(pens, { opacity: 0, duration: .25, ease: 'power1.in' }, 1.75)
+      .to(q2, { opacity: 1, duration: .6, ease: 'power1.out' }, .6)
       // (only if the hall photograph is still on its way does the drawing rest here for a moment)
-      .addPause(1.95, () => assetsReady.then(() => tl.resume()))
-      // 4 — cast: the drawing is a mould. The two lines and the sentence let go, the outline brightens,
+      .addPause(1.35, () => assetsReady.then(() => tl.resume()))
+      // 2 — cast: the drawing is a mould. The sentence lets go, the outline brightens,
       //     molten silver pours into the T from the top, a light runs across the new metal, and it glows
-      .addLabel('ignite', 1.95)
-      .to(['.ld-cons', '.ld-ui'], { opacity: 0, duration: .4, ease: 'power1.out' }, 'ignite')
+      .addLabel('ignite', 1.35)
+      .to('.ld-ui', { opacity: 0, duration: .4, ease: 'power1.out' }, 'ignite')
       .to(paths, { stroke: '#ffffff', duration: .3, ease: 'power1.out' }, 'ignite')
       .set('.ld-t .fill', { opacity: 1 }, 'ignite')
       .to('.ld-pour', { attr: { height: 118 }, duration: .5, ease: 'power2.inOut' }, 'ignite')
       .fromTo('.ld-sheen', { attr: { x: -90 } }, { attr: { x: 250 }, duration: .6, ease: 'power2.inOut' }, 'ignite+=.35')
       .to('.ld-glow', { opacity: .85, duration: .45, ease: 'power2.in' }, 'ignite+=.4')
-      // 5 — that light opens the room: the dark sheet clears outward from the T, softly,
+      // 3 — that light opens the room: the dark sheet clears outward from the T, softly,
       //     and the hall comes up behind it, settling as it arrives; the chrome T is lit at the same pace
       .addLabel('open', 'ignite+=.7')
       .to('.ld-shade', { '--r': R + 'px', '--f': F + 'px', duration: 1.7, ease: 'power2.inOut' }, 'open')
@@ -1373,7 +1359,7 @@ window.TState = { x:0, y:0, scale:1, rotX:0, rotY:0, rotZ:0, light:0, flash:0, t
       .fromTo('.plate img', { scale: 1.12 }, { scale: 1, duration: 2.4, ease: 'power3.out' }, 'open')
       .to(TState, { light: 1, duration: 1.5, ease: 'power2.inOut' }, 'open')
       .fromTo('.beam', { opacity: 0 }, { opacity: .6, duration: .6, ease: 'power2.out' }, 'open+=.1')
-      // 6 — and gives the T back: the white drawing fades and the chrome T stands exactly where it was drawn
+      // 4 — and gives the T back: the white drawing fades and the chrome T stands exactly where it was drawn
       .to(paths, { opacity: 0, duration: .6, ease: 'power1.inOut' }, 'open+=.25')
       .to('.ld-t .fill', { opacity: 0, duration: .9, ease: 'power2.inOut' }, 'open+=.3')
       .to('.ld-glow', { opacity: 0, scale: 1.3, duration: 1.2, ease: 'power2.out' }, 'open+=.3')
