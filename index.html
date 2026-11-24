@@ -1335,36 +1335,36 @@ window.TState = { x:0, y:0, scale:1, rotX:0, rotY:0, rotZ:0, light:0, flash:0, t
     const drawTo = () => paths.forEach((p, k) => { p.style.strokeDashoffset = 1 - pen.f; const q = p.getPointAtLength(p.getTotalLength() * pen.f); pens[k].setAttribute('cx', q.x); pens[k].setAttribute('cy', q.y); });
     const tl = gsap.timeline();
     // 1 — the T is drawn at once: two pens leave the top centre and meet at the foot, while the sentence appears
-    tl.to(pens, { opacity: 1, duration: .2 }, .1)
-      .to(pen, { f: 1, duration: 1.2, ease: 'power3.inOut', onUpdate: drawTo }, .1)
-      .to(pens, { opacity: 0, duration: .25, ease: 'power1.in' }, 1.15)
-      .to(q1, { opacity: 1, duration: .6, ease: 'power1.out' }, .2)
-      .to(q2, { opacity: 1, duration: .6, ease: 'power1.out' }, .6)
+    tl.to(pens, { opacity: 1, duration: .25 }, .15)
+      .to(pen, { f: 1, duration: 1.45, ease: 'power3.inOut', onUpdate: drawTo }, .15)
+      .to(pens, { opacity: 0, duration: .3, ease: 'power1.in' }, 1.42)
+      .to(q1, { opacity: 1, duration: .7, ease: 'power1.out' }, .25)
+      .to(q2, { opacity: 1, duration: .7, ease: 'power1.out' }, .75)
       // (only if the hall photograph is still on its way does the drawing rest here for a moment)
-      .addPause(1.35, () => assetsReady.then(() => tl.resume()))
+      .addPause(1.65, () => assetsReady.then(() => tl.resume()))
       // 2 — cast: the drawing is a mould. The sentence lets go, the outline brightens,
       //     molten silver pours into the T from the top, a light runs across the new metal, and it glows
-      .addLabel('ignite', 1.35)
-      .to('.ld-ui', { opacity: 0, duration: .4, ease: 'power1.out' }, 'ignite')
-      .to(paths, { stroke: '#ffffff', duration: .3, ease: 'power1.out' }, 'ignite')
+      .addLabel('ignite', 1.65)
+      .to('.ld-ui', { opacity: 0, duration: .45, ease: 'power1.out' }, 'ignite')
+      .to(paths, { stroke: '#ffffff', duration: .35, ease: 'power1.out' }, 'ignite')
       .set('.ld-t .fill', { opacity: 1 }, 'ignite')
-      .to('.ld-pour', { attr: { height: 118 }, duration: .5, ease: 'power2.inOut' }, 'ignite')
-      .fromTo('.ld-sheen', { attr: { x: -90 } }, { attr: { x: 250 }, duration: .6, ease: 'power2.inOut' }, 'ignite+=.35')
-      .to('.ld-glow', { opacity: .85, duration: .45, ease: 'power2.in' }, 'ignite+=.4')
+      .to('.ld-pour', { attr: { height: 118 }, duration: .6, ease: 'power2.inOut' }, 'ignite')
+      .fromTo('.ld-sheen', { attr: { x: -90 } }, { attr: { x: 250 }, duration: .7, ease: 'power2.inOut' }, 'ignite+=.42')
+      .to('.ld-glow', { opacity: .85, duration: .5, ease: 'power2.in' }, 'ignite+=.48')
       // 3 — that light opens the room: the dark sheet clears outward from the T, softly,
       //     and the hall comes up behind it, settling as it arrives; the chrome T is lit at the same pace
-      .addLabel('open', 'ignite+=.7')
-      .to('.ld-shade', { '--r': R + 'px', '--f': F + 'px', duration: 1.7, ease: 'power2.inOut' }, 'open')
-      .fromTo('.plate', { opacity: 0 }, { opacity: 1, duration: 1.3, ease: 'power1.inOut' }, 'open')
-      .fromTo('.plate img', { scale: 1.12 }, { scale: 1, duration: 2.4, ease: 'power3.out' }, 'open')
-      .to(TState, { light: 1, duration: 1.5, ease: 'power2.inOut' }, 'open')
-      .fromTo('.beam', { opacity: 0 }, { opacity: .6, duration: .6, ease: 'power2.out' }, 'open+=.1')
+      .addLabel('open', 'ignite+=.85')
+      .to('.ld-shade', { '--r': R + 'px', '--f': F + 'px', duration: 2, ease: 'power2.inOut' }, 'open')
+      .fromTo('.plate', { opacity: 0 }, { opacity: 1, duration: 1.55, ease: 'power1.inOut' }, 'open')
+      .fromTo('.plate img', { scale: 1.12 }, { scale: 1, duration: 2.8, ease: 'power3.out' }, 'open')
+      .to(TState, { light: 1, duration: 1.75, ease: 'power2.inOut' }, 'open')
+      .fromTo('.beam', { opacity: 0 }, { opacity: .6, duration: .7, ease: 'power2.out' }, 'open+=.12')
       // 4 — and gives the T back: the white drawing fades and the chrome T stands exactly where it was drawn
-      .to(paths, { opacity: 0, duration: .6, ease: 'power1.inOut' }, 'open+=.25')
-      .to('.ld-t .fill', { opacity: 0, duration: .9, ease: 'power2.inOut' }, 'open+=.3')
-      .to('.ld-glow', { opacity: 0, scale: 1.3, duration: 1.2, ease: 'power2.out' }, 'open+=.3')
-      .add(heroIntro, 'open+=.4')
-      .add(() => $('.loader').remove(), 'open+=1.8');
+      .to(paths, { opacity: 0, duration: .7, ease: 'power1.inOut' }, 'open+=.3')
+      .to('.ld-t .fill', { opacity: 0, duration: 1.05, ease: 'power2.inOut' }, 'open+=.36')
+      .to('.ld-glow', { opacity: 0, scale: 1.3, duration: 1.4, ease: 'power2.out' }, 'open+=.36')
+      .add(heroIntro, 'open+=.5')
+      .add(() => $('.loader').remove(), 'open+=2.1');
   });
 
   // the hero arrives softly, while the sheet is still dissolving — no flicker, no cut
