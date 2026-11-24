@@ -67,7 +67,7 @@
   /* — SPACE · a 4px scale — */
   --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px;
   /* layout */
-  --pad:clamp(20px,4vw,72px);             /* page gutter */
+  --pad:clamp(18px,3.2vw,60px);           /* page gutter */
   --gap:clamp(16px,2vw,32px);             /* grid gutter */
   --sec:clamp(96px,15vh,176px);           /* section padding */
   --hdr:88px;
@@ -591,8 +591,8 @@ html.is-loading .hero-words,html.is-loading .ui,html.is-loading .hdr,html.is-loa
 .foot-reveal main{position:relative;z-index:1;background:var(--ink)}
 .foot-reveal .footer{position:sticky;bottom:0;z-index:0}
 .marquee{border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:var(--s-4) 0}
-.mq-in{display:inline-flex;gap:var(--s-7);animation:mq 38s linear infinite;color:var(--d-3)}
-.mq-in span{display:inline-flex;align-items:center;gap:var(--s-7);font-size:var(--fs-small);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase}
+.mq-in{display:inline-flex;animation:mq 38s linear infinite;color:var(--d-3);will-change:transform}
+.mq-in span{display:inline-flex;flex:none;align-items:center;gap:var(--s-7);padding-right:var(--s-7);font-size:var(--fs-small);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase}
 .mq-in span::after{content:"";width:22px;height:12px;background:var(--d-4);-webkit-mask:var(--T) center/contain no-repeat;mask:var(--T) center/contain no-repeat}
 @keyframes mq{to{transform:translateX(-50%)}}
 .f-top{display:grid;grid-template-columns:minmax(0,1.8fr) repeat(3,minmax(0,1fr));gap:var(--s-6);padding:var(--s-8) 0 var(--s-6)}
@@ -1683,6 +1683,19 @@ window.TState = { x:0, y:0, scale:1, rotX:0, rotY:0, rotZ:0, light:0, flash:0, t
     });
     gsap.fromTo('.cta-bg', { yPercent: -5 }, { yPercent: 5, ease: 'none', scrollTrigger: { trigger: '.cta', start: 'top bottom', end: 'bottom top', scrub: true } });
     gsap.fromTo('.cta-card', { y: 70, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.3, ease: 'expo.out', scrollTrigger: { trigger: '.cta-card', start: 'top 92%' } });
+  })();
+
+  /* the footer's running line: as many copies as the screen needs, twice over, so it never runs out — at the same pace on any width */
+  (() => {
+    const mq = $('.mq-in'), base = [...mq.children].slice(0, 5).map(s => s.cloneNode(true));
+    const fill = () => {
+      mq.innerHTML = '';
+      do base.forEach(s => mq.appendChild(s.cloneNode(true))); while (mq.getBoundingClientRect().width < window.innerWidth + 200);
+      [...mq.children].forEach(s => mq.appendChild(s.cloneNode(true)));   // the second, identical half: -50% lands exactly on the first
+      mq.style.animationDuration = (mq.getBoundingClientRect().width / 2 / 40).toFixed(1) + 's';   // 40px a second
+    };
+    fill();
+    let w = window.innerWidth; window.addEventListener('resize', () => { if (Math.abs(window.innerWidth - w) > 40) { w = window.innerWidth; fill(); } });
   })();
 
   /* footer newsletter */
